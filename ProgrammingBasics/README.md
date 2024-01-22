@@ -1,6 +1,6 @@
- [Programming Basics - November 2023 - Certificate.pdf](https://github.com/Sensabg/Softuni.java/files/14016594/Programming.Basics.-.November.2023.-.Certificate.pdf)
+
+[Programming Basics - November 2023 - Certificate](https://github.com/Sensabg/Softuni.java/assets/151548889/0bb7c1e5-7e97-4ec4-9b71-abf4cd2959f4)
 
 
 
-
- [Check The Validity of the Certificate Here]https://softuni.bg/certificates/details/196950/8821880f
+https://softuni.bg/certificates/details/196950/8821880f
