@@ -1,4 +1,4 @@
-![Alt text]((https://github.com/Sensabg/Softuni.java/ProgrammingBasics-November2023-Certificate.pdf))
+![Alt text](([https://github.com/Sensabg/Softuni.java/ProgrammingBasics-November2023-Certificate.pdf](https://github.com/Sensabg/Softuni.java/blob/main/ProgrammingBasics/ProgrammingBasics-November2023-Certificate.pdf)https://github.com/Sensabg/Softuni.java/blob/main/ProgrammingBasics/ProgrammingBasics-November2023-Certificate.pdf))
 
 
 
