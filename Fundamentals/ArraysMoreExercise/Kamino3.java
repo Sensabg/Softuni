@@ -23,8 +23,8 @@ public class Kamino3 {
             int[] currentLine = Arrays.stream(command.split("!+"))
                     .mapToInt(Integer::parseInt).toArray();
 
-            lineCount++; //ъпдейтваме номера на текущия ред
-            int longestOnesInARow = 0; //поредица 1-ци на текущия ред
+            lineCount++; 
+            int longestOnesInARow = 0; 
             int startIndex = Integer.MAX_VALUE;
 
             for (int i = 0; i < currentLine.length; i++) {
@@ -34,7 +34,7 @@ public class Kamino3 {
                         onesInARow++;
                         if (onesInARow > longestOnesInARow) {
                             longestOnesInARow = onesInARow;
-                            startIndex = i; //индекса на 1-ците на текщия ред
+                            startIndex = i; 
                         }
                     } else {
                         break;
@@ -42,17 +42,17 @@ public class Kamino3 {
                 }
             }
             if (longestOnesInARow > bestOnes) {
-                bestOnes = longestOnesInARow; //ъпдейтваме най-добрата последователност от 1-ци от всички редове до момента
+                bestOnes = longestOnesInARow; 
                 bestLine = currentLine;
                 bestLineNum = lineCount;
-                bestStartIndex = startIndex; //най-добрия индекс 1-ци
+                bestStartIndex = startIndex; 
             } else if (longestOnesInARow == bestOnes) {
                 if (startIndex < bestStartIndex) {
                     bestLine = currentLine;
                     bestLineNum = lineCount;
                     bestStartIndex = startIndex;
 
-                } else if (startIndex == bestStartIndex) { //при равни посл. 1-ци и индекси проверяваме сумите на текущия и най-добрия до момента ред
+                } else if (startIndex == bestStartIndex) {
 
                     for (int i = 0; i < bestLine.length; i++) {
                         bestSum += bestLine[i];
@@ -70,11 +70,11 @@ public class Kamino3 {
             }
             command = scan.nextLine();
         }
-        bestSum = 0; // да се избегне евентуален ред с по-голяма сума, но по-лоша последователност
+        bestSum = 0; 
         for (int i = 0; i < bestLine.length; i++) {
             bestSum += bestLine[i];
         }
-        // проверка за само нулеви редове
+       
         if (bestSum == 0) {
             bestLineNum = 1;
         }
