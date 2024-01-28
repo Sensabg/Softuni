@@ -17,26 +17,26 @@ public class ListManipulationAdvanced {
         String command = scanner.nextLine();
         System.out.println();
         while (!command.equals("end")) {
-            String[] possibilities = command.split(" ");
-            switch (possibilities[0]) {
+            String[] possibleActions = command.split(" ");
+            switch (possibleActions[0]) {
                 case "Contains":
-                    contains(possibilities, numbers);
+                    isContaining(possibleActions, numbers);
                     break;
                 case "Print":
-                    isEvenOrOdd(possibilities, numbers);
+                    isEvenOrOdd(possibleActions, numbers);
                     break;
                 case "Get":
                     getSum(numbers);
                     break;
                 case "Filter":
-                    returnCondition(possibilities,numbers);
+                    returnCondition(possibleActions,numbers);
                     break;
             }
             command = scanner.nextLine();
         }
     }
 
-    private static void contains(String[] possibilities, List<Integer> numbers) {
+    private static void isContaining(String[] possibilities, List<Integer> numbers) {
         int number = Integer.parseInt(possibilities[1]);
         boolean isFound = false;
         for (Integer value : numbers) {
