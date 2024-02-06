@@ -32,7 +32,7 @@ public class AnonymousThreat {
     private static List<String> getDividedElements(List<String> elements, String command) {
         int startIndex = Integer.parseInt(command.split("\\s")[1]);
         int endIndex = Integer.parseInt(command.split("\\s")[2]);
-        
+
         if (endIndex > elements.size() - 1) {
             endIndex = elements.size() - 1;
         }
@@ -41,7 +41,7 @@ public class AnonymousThreat {
             startIndex = 0;
         }
 
-        List<String> newArray = new ArrayList<>();
+        List<String> newList = new ArrayList<>();
 
         for (int i = startIndex; i <= endIndex; i++) {
             String getElement = elements.get(i);
@@ -58,24 +58,24 @@ public class AnonymousThreat {
                     getSecondHalf++;
                 }
                 j = getSecondHalf;
-                newArray.add(newArray.size(), concatenatedElements);
+                newList.add(newList.size(), concatenatedElements);
                 concatenatedElements = "";
             }
-            
+
             if (getElement.length() % 2 != 0) {
                 for (int j = getSecondHalf; j < getElement.length(); j++) {
                     concatenatedElements = concatenatedElements + getElement.charAt(getSecondHalf);
                 }
-                newArray.add(newArray.size(), concatenatedElements);
+                newList.add(newList.size(), concatenatedElements);
             }
         }
 
         if (startIndex > 0) {
             for (int i = startIndex - 1; i >= 0; i--) {
-                newArray.add(0, elements.get(i));
+                newList.add(0, elements.get(i));
             }
         }
-        return newArray;
+        return newList;
     }
 
     private static List<String> getMergedElements(List<String> elements, String command) {
@@ -91,21 +91,21 @@ public class AnonymousThreat {
         }
 
         String concatenatedElements = elements.get(startIndex);
-        List<String> newArray = new ArrayList<>();
+        List<String> newList = new ArrayList<>();
 
         for (int i = startIndex; i < endIndex; i++) {
             concatenatedElements += elements.get(i + 1);
         }
-        newArray.add(concatenatedElements);
+        newList.add(concatenatedElements);
 
         for (int i = endIndex; i < elements.size() - 1; i++) {
-            newArray.add(elements.get(i + 1));
+            newList.add(elements.get(i + 1));
         }
         if (startIndex > 0) {
             for (int i = startIndex - 1; i >= 0; i--) {
-                newArray.add(0, elements.get(i));
+                newList.add(0, elements.get(i));
             }
         }
-        return newArray;
+        return newList;
     }
 }
