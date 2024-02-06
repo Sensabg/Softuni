@@ -32,9 +32,7 @@ public class AnonymousThreat {
     private static List<String> getDividedElements(List<String> elements, String command) {
         int startIndex = Integer.parseInt(command.split("\\s")[1]);
         int endIndex = Integer.parseInt(command.split("\\s")[2]);
-
-        int start = startIndex;
-
+        
         if (endIndex > elements.size() - 1) {
             endIndex = elements.size() - 1;
         }
@@ -60,19 +58,16 @@ public class AnonymousThreat {
                     getSecondHalf++;
                 }
                 j = getSecondHalf;
-                newArray.add(0, concatenatedElements);
+                newArray.add(newArray.size(), concatenatedElements);
                 concatenatedElements = "";
             }
-
+            
             if (getElement.length() % 2 != 0) {
                 for (int j = getSecondHalf; j < getElement.length(); j++) {
                     concatenatedElements = concatenatedElements + getElement.charAt(getSecondHalf);
                 }
-                newArray.add(0, concatenatedElements);
+                newArray.add(newArray.size(), concatenatedElements);
             }
-        }
-        if(start > 0) {
-            Collections.reverse(newArray);
         }
 
         if (startIndex > 0) {
