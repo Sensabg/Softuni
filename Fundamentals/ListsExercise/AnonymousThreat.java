@@ -1,9 +1,6 @@
 package ListsExercise;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class AnonymousThreat {
@@ -36,6 +33,8 @@ public class AnonymousThreat {
         int startIndex = Integer.parseInt(command.split("\\s")[1]);
         int endIndex = Integer.parseInt(command.split("\\s")[2]);
 
+        int start = startIndex;
+
         if (endIndex > elements.size() - 1) {
             endIndex = elements.size() - 1;
         }
@@ -52,16 +51,19 @@ public class AnonymousThreat {
             String concatenatedElements = "";
             int getSecondHalf = 0;
 
-            for (int j = 0; j < getElement.length() / 2; j++) {
+            for (int j = 0; j < getElement.length(); j++) {
                 int step = getElement.length();
+
                 for (int k = 0; k < step; k++) {
                     concatenatedElements = concatenatedElements + getElement.charAt(getSecondHalf);
                     step /= 2;
                     getSecondHalf++;
                 }
+                j = getSecondHalf;
                 newArray.add(0, concatenatedElements);
                 concatenatedElements = "";
             }
+
             if (getElement.length() % 2 != 0) {
                 for (int j = getSecondHalf; j < getElement.length(); j++) {
                     concatenatedElements = concatenatedElements + getElement.charAt(getSecondHalf);
@@ -69,6 +71,10 @@ public class AnonymousThreat {
                 newArray.add(0, concatenatedElements);
             }
         }
+        if(start > 0) {
+            Collections.reverse(newArray);
+        }
+
         if (startIndex > 0) {
             for (int i = startIndex - 1; i >= 0; i--) {
                 newArray.add(0, elements.get(i));
