@@ -28,8 +28,8 @@ public class Problem3Numbers {
         }
 
         Collections.sort(topIntegers, Collections.reverseOrder());
-        //int topCount = Math.min(5, topIntegers.size());
-        List<Integer> topFiveNumbers = topIntegers.subList(0, 5);
+        int topCount = Math.min(5, topIntegers.size());
+        List<Integer> topFiveNumbers = topIntegers.subList(0, topCount);
 
         if (topIntegers.isEmpty()) {
             System.out.println("No");
