@@ -2,7 +2,7 @@ package MidExams;
 
 import java.util.Scanner;
 
-public class Problem2SoftUniReception {
+public class Problem1SoftUniReception {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
