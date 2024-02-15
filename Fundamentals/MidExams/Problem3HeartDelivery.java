@@ -14,7 +14,7 @@ public class Problem3HeartDelivery {
                 .collect(Collectors.toList());
 
         int saveLastIndex = -1;
-        int count = 0;
+        //int count = 0;
 
         String command = scanner.nextLine();
         while (!"Love!".equals(command)) {
