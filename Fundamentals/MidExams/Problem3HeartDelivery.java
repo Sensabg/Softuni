@@ -54,13 +54,14 @@ public class Problem3HeartDelivery {
                 break;
             }
         }
-
-        for (int i = 0; i < listOfEvenIntegers.size(); i++) {
-            if (listOfEvenIntegers.get(i) == 0) {
-                count++;
-            }
-        }
-
+        int count = listOfEvenIntegers.stream()
+                 .mapToInt(value -> value == 0 ? 1 : 0)
+                 .sum();
+        // for (int i = 0; i < listOfEvenIntegers.size(); i++) {
+        //     if (listOfEvenIntegers.get(i) == 0) {
+        //         count++;
+        //     }
+        // }
         int failedPlaces = listOfEvenIntegers.size() - count;
 
         if (isSuccessful) {
