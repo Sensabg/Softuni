@@ -18,7 +18,6 @@ public class Problem3Manowar {
                 .collect(Collectors.toList());
 
         int maxHealth = Integer.parseInt(scanner.nextLine());
-
         int pirateShipSize = pirateShip.size();
         int warShipSize = warShip.size();
 
@@ -38,7 +37,6 @@ public class Problem3Manowar {
                     printTheStatusOfEachSection(pirateShip, maxHealth);
                     break;
             }
-
             command = scanner.nextLine();
         }
         if(pirateShipSize == pirateShip.size() && warShipSize == warShip.size()){
@@ -77,10 +75,8 @@ public class Problem3Manowar {
             }
             pirateShip.set(index, healSection);
         }
-
         return pirateShip;
     }
-
 
     private static List<Integer> attackThePirateShip(List<Integer> pirateShip, String command) {
         int startIndex = Integer.parseInt(command.split(" ")[1]);
@@ -100,9 +96,7 @@ public class Problem3Manowar {
                     pirateShip.remove(i);
                     return pirateShip;
                 }
-
             }
-
         }
         return pirateShip;
     }
