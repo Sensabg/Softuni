@@ -19,10 +19,8 @@ public class Problem2ShoppingList {
             switch (command.split(" ")[0]) {
                 case "Urgent":
                     String addProduct = command.split(" ")[1];
-                    for (int i = 1; i < listOfIProducts.size(); i++) {
-                        if (!listOfIProducts.contains(addProduct)) {
-                            listOfIProducts.add(0, addProduct);
-                        }
+                    if (!listOfIProducts.contains(addProduct)) {
+                        listOfIProducts.add(0, addProduct);
                     }
                     break;
                 case "Unnecessary":
@@ -33,20 +31,15 @@ public class Problem2ShoppingList {
                     String oldProduct = command.split(" ")[1];
                     String newProduct = command.split(" ")[2];
                     int getIndex = listOfIProducts.indexOf(oldProduct);
-
-                    for (int i = 1; i < listOfIProducts.size(); i++) {
-                        if (listOfIProducts.contains(oldProduct)) {
-                            listOfIProducts.set(getIndex, newProduct);
-                        }
+                    if (listOfIProducts.contains(oldProduct)) {
+                        listOfIProducts.set(getIndex, newProduct);
                     }
                     break;
                 case "Rearrange":
                     String arrangeItem = command.split(" ")[1];
-                    for (int i = 1; i < listOfIProducts.size(); i++) {
-                        if (listOfIProducts.contains(arrangeItem)) {
-                            listOfIProducts.remove(arrangeItem);
-                            listOfIProducts.add(arrangeItem);
-                        }
+                    if (listOfIProducts.contains(arrangeItem)) {
+                        listOfIProducts.remove(arrangeItem);
+                        listOfIProducts.add(arrangeItem);
                     }
                     break;
             }
