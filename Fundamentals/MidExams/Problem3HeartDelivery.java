@@ -14,7 +14,6 @@ public class Problem3HeartDelivery {
                 .collect(Collectors.toList());
 
         int saveLastIndex = -1;
-        //int count = 0;
 
         String command = scanner.nextLine();
         while (!"Love!".equals(command)) {
@@ -47,27 +46,14 @@ public class Problem3HeartDelivery {
 
         System.out.printf("Cupid's last position was %d.\n", saveLastIndex);
 
-        boolean isSuccessful = true;
-        for (int house : listOfEvenIntegers) {
-            if (house != 0) {
-                isSuccessful = false;
-                break;
-            }
-        }
         int count = listOfEvenIntegers.stream()
                  .mapToInt(value -> value == 0 ? 1 : 0)
                  .sum();
-        // for (int i = 0; i < listOfEvenIntegers.size(); i++) {
-        //     if (listOfEvenIntegers.get(i) == 0) {
-        //         count++;
-        //     }
-        // }
-        int failedPlaces = listOfEvenIntegers.size() - count;
 
-        if (isSuccessful) {
+        if (count == listOfEvenIntegers.size()) {
             System.out.println("Mission was successful.");
         } else {
-            System.out.printf("Cupid has failed %d places.", failedPlaces);
+            System.out.printf("Cupid has failed %d places.", listOfEvenIntegers.size() - count);
         }
     }
 }
