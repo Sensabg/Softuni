@@ -83,8 +83,7 @@ public class Problem3Manowar {
         int endIndex = Integer.parseInt(command.split(" ")[2]);
         int damage = Integer.parseInt(command.split(" ")[3]);
 
-        if (startIndex >= 0 && startIndex <= pirateShip.size() - 1
-                && endIndex >= 0 && endIndex <= pirateShip.size() - 1) {
+        if (isValidIndex(pirateShip, startIndex) && isValidIndex(pirateShip, endIndex)) {
 
             for (int i = startIndex; i <= endIndex; i++) {
                 int currentSection = pirateShip.get(i);
