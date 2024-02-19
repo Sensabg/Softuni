@@ -16,17 +16,19 @@ public class Messaging {
         StringBuilder message = new StringBuilder(scanner.nextLine());
         StringBuilder decryptedMessage = new StringBuilder();
 
-        for (int i = 0; i < numbers.size(); i++) {
-            String getNumbers = numbers.get(i);
+        for (String getNumbers : numbers) {
             int number = Integer.parseInt(getNumbers);
             int getIndex = 0;
+
             while (number > 0) {
                 getIndex += number % 10;
                 number /= 10;
             }
+
             while (getIndex > message.length()) {
                 getIndex -= message.length();
             }
+
             String getChar = String.valueOf(message.charAt(getIndex));
             decryptedMessage.append(getChar);
             message.deleteCharAt(getIndex);
