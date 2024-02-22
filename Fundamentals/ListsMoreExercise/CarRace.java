@@ -16,19 +16,20 @@ public class CarRace {
         double timePlayerOne = 0;
         double timePlayerTwo = 0;
 
-
         for (int i = 0; i < numbers.size() / 2 ; i++) {
             timePlayerOne += numbers.get(i);
             if (numbers.get(i) == 0) {
                 timePlayerOne -= timePlayerOne * 0.20;
             }
         }
+
         for (int i = numbers.size() - 1; i > numbers.size() / 2 ; i--) {
             timePlayerTwo += numbers.get(i);
             if (numbers.get(i) == 0) {
                 timePlayerTwo -= timePlayerTwo * 0.20;
             }
         }
+
         if (timePlayerOne < timePlayerTwo) {
             System.out.printf("The winner is left with total time: %.1f",timePlayerOne);
         } else {
