@@ -1,4 +1,3 @@
-//not finnished yet
 package ListsMoreExercise;
 
 import java.util.ArrayList;
@@ -11,8 +10,8 @@ public class DrumSet {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-
         double money = Double.parseDouble(scanner.nextLine());
+
         List<Integer> initialDrumPadsDurability = Arrays.stream(scanner.nextLine().split("\\s+"))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
@@ -28,24 +27,21 @@ public class DrumSet {
                 int currentHealth = damagedDrumPads.get(i);
                 int priceForDrumPad = initialHealth * 3;
 
-                if (currentHealth <= 0 && money - priceForDrumPad <= 0) {
-                    damagedDrumPads.remove(damagedDrumPads.get(i));
-                    initialDrumPadsDurability.remove(initialDrumPadsDurability.get(i));
-                } else {
-                    currentHealth -= damagePerDay;
-                    damagedDrumPads.set(i, currentHealth);
-                }
+                currentHealth -= damagePerDay;
+                damagedDrumPads.set(i, currentHealth);
 
                 if (money - priceForDrumPad >= 0 && currentHealth <= 0) {
                     money -= priceForDrumPad;
                     damagedDrumPads.set(i, initialHealth);
                 }
             }
-
             command = scanner.nextLine();
         }
-        System.out.println(damagedDrumPads.toString().replaceAll("[\\[\\],]", ""));
-        System.out.printf("Gabsy has %.2flv.", money);
+        List<Integer> drumPadsLeft = damagedDrumPads.stream()
+                .filter(n -> n > 0)
+                .collect(Collectors.toList());
 
+        System.out.println(drumPadsLeft.toString().replaceAll("[\\[\\],]", ""));
+        System.out.printf("Gabsy has %.2flv.", money);
     }
 }
