@@ -14,6 +14,7 @@ public class Main {
 
         for (int i = 0; i < n; i++) {
             String[] carInfo = scanner.nextLine().split("\\s+");
+
             String model = carInfo[0];
 
             int engineSpeed = Integer.parseInt(carInfo[1]);
@@ -24,10 +25,13 @@ public class Main {
 
             double tireOnePressure = Double.parseDouble(carInfo[5]);
             int tireOneAge = Integer.parseInt(carInfo[6]);
+
             double tireTwoPressure = Double.parseDouble(carInfo[7]);
             int tireTwoAge = Integer.parseInt(carInfo[8]);
+
             double tireThreePressure = Double.parseDouble(carInfo[9]);
             int tireThreeAge = Integer.parseInt(carInfo[10]);
+
             double tireFourPressure = Double.parseDouble(carInfo[11]);
             int tireFourAge = Integer.parseInt(carInfo[12]);
 
@@ -42,7 +46,6 @@ public class Main {
         String filterByType = scanner.nextLine();
 
         if(filterByType.equals("fragile")){
-
             List<String> fragileCarModels = cars.stream()
                     .filter(car -> "fragile".equalsIgnoreCase(car.getCargoType())
                             && (car.getTireOnePressure() < 1
@@ -54,7 +57,6 @@ public class Main {
 
             fragileCarModels.forEach(System.out::println);
         } else {
-
             List<String> flamableCarModels = cars.stream()
                     .filter(car -> "flamable".equalsIgnoreCase(car.getCargoType())
                             && car.getEnginePower() > 250)
