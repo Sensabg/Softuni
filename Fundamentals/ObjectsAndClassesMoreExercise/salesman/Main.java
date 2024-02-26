@@ -6,7 +6,6 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -25,7 +24,6 @@ public class Main {
             String efficiency = "n/a";
 
             Pattern pattern = Pattern.compile("\\d{2,}");
-
             if (engineInfo.length == 3) {
                 Matcher matcher = pattern.matcher(engineInfo[2]);
                 if (matcher.find()) {
