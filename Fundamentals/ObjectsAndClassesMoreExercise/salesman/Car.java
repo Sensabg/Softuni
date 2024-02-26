@@ -17,34 +17,13 @@ public class Car {
         return carModel;
     }
 
-    public void setCarModel(String carModel) {
-        this.carModel = carModel;
-    }
-
-    public Engine getEngine() {
-        return engine;
-    }
-
-    public void setEngine(Engine engine) {
-        this.engine = engine;
-    }
-
     public String getWeight() {
         return weight;
-    }
-
-    public void setWeight(String weight) {
-        this.weight = weight;
     }
 
     public String getColor() {
         return color;
     }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
 
     public String toString() {
         return String.format("%s %s %s %s", this.carModel, this.engine, this.weight, this.color);
