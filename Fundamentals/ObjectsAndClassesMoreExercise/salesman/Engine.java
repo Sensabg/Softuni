@@ -1,10 +1,10 @@
 package ObjectsAndClassesMoreExercise.salesman;
 
 public class Engine {
-    private  String engineModel;
-    private   String power;
-    private  String displacement;
-    private   String efficiency;
+    private String engineModel;
+    private String power;
+    private String displacement;
+    private String efficiency;
 
     public Engine(String engineModel, String power, String displacement, String efficiency) {
         this.engineModel = engineModel;
