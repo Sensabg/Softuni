@@ -71,7 +71,6 @@ public class Main {
                             .collect(Collectors.toList());
 
                     teamInfo.add("- " + entry.getValue().get(0).getUsername());
-                    // Add sorted members
                     sortedMembers.forEach(user -> teamInfo.add("-- " + user.getUsername()));
                     return teamInfo.stream();
                 })
