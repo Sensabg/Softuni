@@ -3,7 +3,6 @@ package ObjectsAndClassesMoreExercise.projects;
 import java.util.*;
 import java.util.stream.Collectors;
 
-//not finished
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -66,11 +65,14 @@ public class Main {
                 .flatMap(entry -> {
                     List<String> teamInfo = new ArrayList<>();
                     teamInfo.add(entry.getKey());
-                    int userCount = 0;
-                    for (Users user : entry.getValue()) {
-                        teamInfo.add((userCount == 0 ? "- " : "-- ") + user.getUsername());
-                        userCount++;
-                    }
+                    List<Users> sortedMembers = entry.getValue().stream()
+                            .skip(1) // Skip the first member (creator)
+                            .sorted(Comparator.comparing(Users::getUsername))
+                            .collect(Collectors.toList());
+
+                    teamInfo.add("- " + entry.getValue().get(0).getUsername());
+                    // Add sorted members
+                    sortedMembers.forEach(user -> teamInfo.add("-- " + user.getUsername()));
                     return teamInfo.stream();
                 })
                 .forEach(System.out::println);
@@ -79,33 +81,3 @@ public class Main {
         teamsToDisband.forEach(System.out::println);
     }
 }
-//        Map<String, List<Users>> departmentMap = new HashMap<>();
-//
-//        for (Users currentUsers : usersInfo) {
-//            String department = currentUsers.getTeamName();
-//            departmentMap.computeIfAbsent(department, k -> new ArrayList<>()).add(currentUsers);
-//        }
-//        List<String> sortedDepartments = new ArrayList<>(departmentMap.keySet());
-//
-//        for (String department : sortedDepartments) {
-//            List<Users> sortedMembers = new ArrayList<>(departmentMap.get(department));
-//
-//            if (sortedMembers.size() > 1) {
-//                System.out.println(department);
-//                int counter = 0;
-//                for (Users team : sortedMembers) {
-//                    counter++;
-//                    String user = team.getUsername();
-//                    if (counter == 1) {
-//                        System.out.println("- " + user);
-//                    } else {
-//                        System.out.println("-- " + user);
-//                    }
-//                }
-//            }
-//        }
-//        System.out.println("Teams to disband:");
-//        sortedDepartments.stream()
-//                .filter(department -> departmentMap.get(department).size() == 1)
-//                .forEach(System.out::println);
-//    }
