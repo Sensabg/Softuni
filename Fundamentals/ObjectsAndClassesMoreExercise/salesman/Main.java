@@ -12,6 +12,11 @@ public class Main {
 
         List<Engine> engineList = new ArrayList<>();
         List<Car> carList = new ArrayList<>();
+        Pattern pattern = Pattern.compile("\\d{2,}");
+        String displacement = "n/a";
+        String efficiency = "n/a";
+        String weight = "n/a";
+        String color = "n/a";
 
         int enginesAmount = Integer.parseInt(scanner.nextLine());
         for (int i = 0; i < enginesAmount; i++) {
@@ -20,10 +25,6 @@ public class Main {
             String engineModel = engineInfo[0];
             String power = engineInfo[1];
 
-            String displacement = "n/a";
-            String efficiency = "n/a";
-
-            Pattern pattern = Pattern.compile("\\d{2,}");
             if (engineInfo.length == 3) {
                 Matcher matcher = pattern.matcher(engineInfo[2]);
                 if (matcher.find()) {
@@ -49,12 +50,6 @@ public class Main {
             String[] carInfo = scanner.nextLine().split("\\s+");
             String carModel = carInfo[0];
 
-            String displacement = "n/a";
-            String efficiency = "n/a";
-
-            String weight = "n/a";
-            String color = "n/a";
-
             String engineModel = carInfo[1];
             for (Engine existingEngine : engineList) {
                 if (existingEngine.getEngineModel().equals(engineModel)) {
@@ -62,7 +57,6 @@ public class Main {
                     efficiency = existingEngine.getEfficiency();
                     String power = existingEngine.getPower();
 
-                    Pattern pattern = Pattern.compile("\\d{2,}");
                     if (carInfo.length == 3) {
                         Matcher matcher = pattern.matcher(carInfo[2]);
                         if (matcher.find()) {
@@ -88,10 +82,10 @@ public class Main {
         }
         for (Car existingCars : carList) {
             System.out.println(existingCars.getCarModel() + ":");
-            System.out.println("  " + existingCars.engine.getEngineModel()+ ":");
-            System.out.println("    Power: " + existingCars.engine.getPower());
-            System.out.println("    Displacement: " + existingCars.engine.getDisplacement());
-            System.out.println("    Efficiency: " + existingCars.engine.getEfficiency());
+            System.out.println("  " + existingCars.getEngine().getEngineModel() + ":");
+            System.out.println("    Power: " + existingCars.getEngine().getPower());
+            System.out.println("    Displacement: " + existingCars.getEngine().getDisplacement());
+            System.out.println("    Efficiency: " + existingCars.getEngine().getEfficiency());
             System.out.println("  Weight: " + existingCars.getWeight());
             System.out.println("  Color: " + existingCars.getColor());
         }
