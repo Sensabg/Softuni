@@ -46,7 +46,7 @@ public class GroomingSalon {
     }
 
     public String getStatistics() {
-        String statistics = "The grooming ObjectsAndClassesExercise.salon has the following clients:\n";
+        String statistics = "The grooming salon has the following clients:\n";
         for (Pet pet : this.data) {
             statistics += String.format("%s %s\n", pet.getName(), pet.getOwner());
         }
