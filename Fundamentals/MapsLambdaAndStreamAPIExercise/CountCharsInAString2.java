@@ -1,5 +1,6 @@
 package MapsLambdaAndStreamAPIExercise;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.HashMap;
@@ -12,9 +13,9 @@ public class CountCharsInAString2 {
 
         Map<Character, Integer> charCounts = input.chars()
                 .mapToObj(c -> (char) c)
-                .collect(HashMap::new,
+                .collect(LinkedHashMap::new,
                         (map, symbol) -> map.merge(symbol, 1, Integer::sum),
-                        HashMap::putAll);
+                        LinkedHashMap::putAll);
 
         charCounts.forEach((character, count) ->
                 System.out.printf("%c -> %d%n", character, count));
