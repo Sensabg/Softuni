@@ -16,8 +16,13 @@ public class CompanyUsers {
             String name= info[0];
             String id = info[1];
 
-            company.putIfAbsent(name, new ArrayList<>());
-            company.get(name).add(id);
+            List<String> currentCompanyEmployees = company.get(name);
+            boolean containsId = currentCompanyEmployees != null && currentCompanyEmployees.contains(id);
+
+            if (!containsId) {
+                company.putIfAbsent(name, new ArrayList<>());
+                company.get(name).add(id);
+            }
 
             input = scanner.nextLine();
         }
