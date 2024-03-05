@@ -19,7 +19,8 @@ public class Orders2 {
             double price = Double.parseDouble(input.split(" ")[1]);
             int quantity = Integer.parseInt(input.split(" ")[2]);
 
-            productsQuantity.compute(productName, (key, existingQuantity) -> existingQuantity == null ? quantity : existingQuantity + quantity);
+            productsQuantity.compute(productName, (key, existingQuantity) -> 
+                                                        existingQuantity == null ? quantity : existingQuantity + quantity);
             productsPrice.put(productName, price);
 
             input = scanner.nextLine();
