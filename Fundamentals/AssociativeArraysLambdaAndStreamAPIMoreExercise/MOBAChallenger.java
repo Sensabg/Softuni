@@ -1,3 +1,4 @@
+80/100
 package AssociativeArraysLambdaAndStreamAPIMoreExercise;
 
 import java.util.*;
