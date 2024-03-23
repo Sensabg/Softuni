@@ -43,7 +43,6 @@ public class Problem1PasswordReset {
                         System.out.println("Nothing to replace!");
                     }
                     break;
-
             }
         }
         System.out.println("Your password is: " + password);
