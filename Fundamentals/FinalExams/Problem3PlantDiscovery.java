@@ -53,7 +53,7 @@ public class Problem3PlantDiscovery {
         System.out.println("Plants for the exhibition: ");
         for (Map.Entry<String, String> plantInfo : plantRarity.entrySet()) {
             String plantName = plantInfo.getKey();
-            String rare = plantInfo.getKey();
+            String rare = plantInfo.getValue();
             List<Double> grades = plantGrades.get(plantName);
             double avrGrade;
 
