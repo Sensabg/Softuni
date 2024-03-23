@@ -11,7 +11,7 @@ public class Problem2DestinationMapper {
         Scanner scanner = new Scanner(System.in);
 
         String input = scanner.nextLine();
-        String regex = "([\\/=])(?<destination>[A-Z][a-z]{3,})\\1";
+        String regex = "([\\/=])(?<destination>[A-Z][A-za-z]{2,})\\1";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
         List<String> destinations = new ArrayList<>();
@@ -19,11 +19,10 @@ public class Problem2DestinationMapper {
 
         while (matcher.find()) {
             String destination = matcher.group("destination");
+            totalSum += destination.length();
             destinations.add(destination);
         }
-        for (String destination : destinations) {
-            totalSum += destination.length();
-        }
+
         System.out.println("Destinations: " + destinations.toString()
                 .replace("[", "")
                 .replace("]", ""));
