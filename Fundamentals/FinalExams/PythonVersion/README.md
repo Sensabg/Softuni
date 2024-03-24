@@ -1,4 +1,4 @@
-I solved the tasks in Java, however, it appears that the contest is not configured to support different languages than Python at this point:
+# I solved the tasks in Java, however, it appears that the contest is not configured to support different languages than Python at this point:
 
 # https://judge.softuni.org/Contests/Practice/Index/4778#0 
 
