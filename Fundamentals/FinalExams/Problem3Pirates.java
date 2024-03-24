@@ -27,6 +27,7 @@ public class Problem3Pirates {
             if (cities.contains(city)) {
                 currentPopulation = cityPopulation.get(city);
                 currentGold = cityGold.get(city);
+
                 cityPopulation.put(city, currentPopulation + people);
                 cityGold.put(city, currentGold + gold);
             } else {
@@ -64,6 +65,7 @@ public class Problem3Pirates {
                 case "Prosper":
                     gold = Integer.parseInt(info[2]);
                     currentGold = cityGold.get(city);
+
                     if (gold < 0) {
                         System.out.println("Gold added cannot be a negative number!");
                     } else {
