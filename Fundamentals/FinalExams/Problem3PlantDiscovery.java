@@ -30,7 +30,9 @@ public class Problem3PlantDiscovery {
             String command = info[0];
             String plant = info[1];
 
-            if (plantRarity.containsKey(plant)) {
+            if (!plantRarity.containsKey(plant)) {
+                System.out.println("error");
+            } else {
                 switch (command) {
 
                     case "Rate":
@@ -47,8 +49,6 @@ public class Problem3PlantDiscovery {
                         plantGrades.get(plant).clear();
                         break;
                 }
-            } else {
-                System.out.println("error");
             }
         }
         System.out.println("Plants for the exhibition: ");
