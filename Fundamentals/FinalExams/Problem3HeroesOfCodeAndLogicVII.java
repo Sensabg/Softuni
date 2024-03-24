@@ -39,6 +39,7 @@ public class Problem3HeroesOfCodeAndLogicVII {
                     int neededMana = Integer.parseInt(info[2]);
                     String spell = info[3];
                     currentMana = heroMana.get(heroName);
+
                     if (currentMana - neededMana < 0) {
                         System.out.printf("%s does not have enough MP to cast %s!\n", heroName, spell);
                     } else {
@@ -52,10 +53,11 @@ public class Problem3HeroesOfCodeAndLogicVII {
                     int damage = Integer.parseInt(info[2]);
                     String attacker = info[3];
                     currentHealth = heroHealth.get(heroName);
+
                     if (currentHealth - damage <= 0) {
-                        System.out.printf("%s has been killed by %s!\n", heroName, attacker);
                         heroHealth.remove(heroName);
                         heroMana.remove(heroName);
+                        System.out.printf("%s has been killed by %s!\n", heroName, attacker);
                     } else {
                         heroHealth.put(heroName, currentHealth - damage);
                         System.out.printf("%s was hit for %d HP by %s and now has %d HP left!\n",
@@ -66,6 +68,7 @@ public class Problem3HeroesOfCodeAndLogicVII {
                 case "Recharge":
                     int gainMana = Integer.parseInt(info[2]);
                     currentMana = heroMana.get(heroName);
+
                     heroMana.put(heroName, Math.min(200, currentMana + gainMana));
                     System.out.printf("%s recharged for %d MP!\n", heroName, heroMana.get(heroName) - currentMana);
                     break;
@@ -73,6 +76,7 @@ public class Problem3HeroesOfCodeAndLogicVII {
                 case "Heal":
                     int heal = Integer.parseInt(info[2]);
                     currentHealth = heroHealth.get(heroName);
+
                     heroHealth.put(heroName, Math.min(100, currentHealth + heal));
                     System.out.printf("%s healed for %d HP!\n", heroName, heroHealth.get(heroName) - currentHealth);
                     break;
