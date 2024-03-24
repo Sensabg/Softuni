@@ -36,12 +36,14 @@ public class Problem3NeedForSpeedIII {
                 case "Drive":
                     int targetDistance = Integer.parseInt(info[2]);
                     int neededFuel = Integer.parseInt(info[3]);
+
                     if (carsFuel.get(car) - neededFuel < 0) {
                         System.out.println("Not enough fuel to make that ride");
                     } else {
                         System.out.println(car + " driven for " + targetDistance + " kilometers. " + neededFuel + " liters of fuel consumed.");
                         carsFuel.put(car, carsFuel.get(car) - neededFuel);
                         carsMileage.put(car, carsMileage.get(car) + targetDistance);
+
                         if (carsMileage.get(car) >= 100000) {
                             System.out.printf("Time to sell the %s!\n", car);
                             carsMileage.remove(car);
@@ -52,6 +54,7 @@ public class Problem3NeedForSpeedIII {
 
                 case "Refuel":
                     int addFuel = Integer.parseInt(info[2]);
+
                     if (carsFuel.get(car) + addFuel >= 75) {
                         System.out.printf("%s refueled with %d liters\n", car,75 - carsFuel.get(car));
                         carsFuel.put(car, 75);
@@ -63,6 +66,7 @@ public class Problem3NeedForSpeedIII {
 
                 case "Revert":
                     int kilometers = Integer.parseInt(info[2]);
+
                     if (carsMileage.get(car) - kilometers < 10000) {
                         carsMileage.put(car, 10000);
                     } else {
