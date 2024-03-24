@@ -31,6 +31,7 @@ public class Problem1ActivationKeys {
                     startIndex = Integer.parseInt(info[2]);
                     endIndex = Integer.parseInt(info[3]);
                     String takeChars = rawKey.substring(startIndex, endIndex);
+
                     if (direction.equals("Upper")) {
                         rawKey = rawKey.replace(takeChars, takeChars.toUpperCase());
                     } else if (direction.equals("Lower")) {
