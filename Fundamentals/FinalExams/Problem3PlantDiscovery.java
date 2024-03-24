@@ -29,6 +29,7 @@ public class Problem3PlantDiscovery {
             info = input.split(regexSplit);
             String command = info[0];
             String plant = info[1];
+
             if (plantRarity.containsKey(plant)) {
                 switch (command) {
 
