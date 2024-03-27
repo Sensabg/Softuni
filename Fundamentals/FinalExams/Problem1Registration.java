@@ -31,7 +31,6 @@ public class Problem1Registration {
                 case "Reverse":
                     startIndex = Integer.parseInt(info[1]);
                     endIndex = Integer.parseInt(info[2]);
-                    System.out.println();
                     if (isValid(startIndex, username) && isValid(endIndex, username)) {
                         StringBuilder substring = new StringBuilder(username.substring(startIndex, endIndex + 1)).reverse();
                         System.out.println(substring);
