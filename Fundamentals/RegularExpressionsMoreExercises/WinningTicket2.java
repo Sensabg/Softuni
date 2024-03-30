@@ -14,8 +14,8 @@ public class WinningTicket2 {
             if (ticket.length() != 20) {
                 System.out.println("invalid ticket");
             } else {
-                String pattern = "([$|@|#|\\^]{6,})[\\s\\S]+?\\1";
-                Matcher matcher = Pattern.compile(pattern).matcher(ticket.substring(0, 10) + " " + ticket.substring(10));
+                String regex = "([$|@|#|\\^]{6,})[\\s\\S]+?\\1";
+                Matcher matcher = Pattern.compile(regex).matcher(ticket.substring(0, 10) + " " + ticket.substring(10));
 
                 if (matcher.find()) {
                     char symbol = matcher.group(1).charAt(0);
