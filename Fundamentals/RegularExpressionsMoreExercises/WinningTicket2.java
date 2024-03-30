@@ -23,7 +23,7 @@ public class WinningTicket2 {
 
                     System.out.printf("ticket \"%s\" - %d%c%s\n", ticket, count, symbol, (count == 10) ? " Jackpot!" : "");
                 } else {
-                    System.out.printf("ticket \"%s\" - no match\n", string);
+                    System.out.printf("ticket \"%s\" - no match\n", ticket);
                 }
             }
         }
