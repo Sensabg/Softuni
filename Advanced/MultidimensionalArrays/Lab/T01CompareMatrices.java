@@ -15,7 +15,7 @@ public class T01CompareMatrices {
         int i = 0;
         while (i < firstMatrix.length && areEqual) {
             int[] firstArray = firstMatrix[i];
-            int[] secondArray = firstMatrix[i];
+            int[] secondArray = secondMatrix[i];
 
             areEqual = firstArray.length == secondArray.length;
 
@@ -39,7 +39,7 @@ public class T01CompareMatrices {
 
         int[][] matrix = new int[rows][cols];
 
-        for (int i = 0; i < matrix.length; i++) {
+        for (int i = 0; i < rows; i++) {
             matrix[i] = readArray(scanner);
         }
 
