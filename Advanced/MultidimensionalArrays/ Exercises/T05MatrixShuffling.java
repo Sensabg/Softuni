@@ -1,5 +1,3 @@
-80/100
-
 package MultidimensionalArrays.Ex;
 
 import java.util.Arrays;
@@ -13,15 +11,16 @@ public class T05MatrixShuffling {
         String command;
 
         while (!"END".equals(command = readString(scanner))) {
-            String[] positions = command.substring(5).split("\\s+");
+            String[] input = command.split("\\s+");
 
-            if (!"swap".equals(command.split("\\s+")[0]) || !isValidIndex(positions, matrix.length, matrix[0].length)) {
+            if (input.length != 5 || !isValidIndex(input, matrix.length, matrix[0].length)) {
                 System.out.println("Invalid input!");
             } else {
-                int one = Integer.parseInt(positions[0]);
-                int two = Integer.parseInt(positions[1]);
-                int three = Integer.parseInt(positions[2]);
-                int four = Integer.parseInt(positions[3]);
+                int one = Integer.parseInt(input[1]);
+                int two = Integer.parseInt(input[2]);
+                int three = Integer.parseInt(input[3]);
+                int four = Integer.parseInt(input[4]);
+
                 String[] numbers = {matrix[one][two], matrix[three][four]};
                 matrix[one][two] = numbers[1];
                 matrix[three][four] = numbers[0];
@@ -32,10 +31,10 @@ public class T05MatrixShuffling {
     }
 
     private static boolean isValidIndex(String[] location, int rows, int cols) {
-        int row1 = Integer.parseInt(location[0]);
-        int col1 = Integer.parseInt(location[1]);
-        int row2 = Integer.parseInt(location[2]);
-        int col2 = Integer.parseInt(location[3]);
+        int row1 = Integer.parseInt(location[1]);
+        int col1 = Integer.parseInt(location[2]);
+        int row2 = Integer.parseInt(location[3]);
+        int col2 = Integer.parseInt(location[4]);
 
         return row1 >= 0 && row1 < rows && col1 >= 0 && col1 < cols &&
                 row2 >= 0 && row2 < rows && col2 >= 0 && col2 < cols;
