@@ -45,8 +45,6 @@ public class T05MatrixShuffling2 {
                 System.out.println("Invalid input!");
             }
         }
-
-        scanner.close();
     }
 
     private static boolean isValidIndex(int row, int col, int rows, int cols) {
