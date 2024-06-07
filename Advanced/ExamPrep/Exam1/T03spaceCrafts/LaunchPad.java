@@ -25,9 +25,7 @@ public class LaunchPad {
     }
 
     public void addSpacecraft(spaceCrafts.Spacecraft spacecraft) {
-
         if (spacecrafts.size() < capacity) {
-//            if (spacecrafts.stream().noneMatch(s -> s.getName().equals(spacecraft.getName()))) {
             spacecrafts.add(spacecraft);
         } else {
             System.out.println(("This launchpad is at full capacity!"));
