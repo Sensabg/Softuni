@@ -1,7 +1,9 @@
 package spaceCrafts;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LaunchPad {
     private String name;
@@ -25,37 +27,25 @@ public class LaunchPad {
     public void addSpacecraft(spaceCrafts.Spacecraft spacecraft) {
 
         if (spacecrafts.size() < capacity) {
-            if (spacecrafts.stream().noneMatch(s -> s.getName().equals(spacecraft.getName()))) {
-                spacecrafts.add(spacecraft);
-            } else {
-                throw new RuntimeException("This spacecraft already exists!");
-            }
+//            if (spacecrafts.stream().noneMatch(s -> s.getName().equals(spacecraft.getName()))) {
+            spacecrafts.add(spacecraft);
         } else {
             System.out.println(("This launchpad is at full capacity!"));
         }
     }
 
     public boolean removeSpacecraft(String name) {
-        for (Spacecraft spacecraft : spacecrafts) {
-            if (spacecraft.getName().equals(name)) {
-                spacecrafts.remove(spacecraft);
-                return true;
-            }
+        if (spacecrafts.removeIf(spacecraft -> spacecraft.getName().equals(name))) {
+            return true;
         }
         return false;
     }
 
     public String getHeaviestSpacecraft() {
-        if (spacecrafts.isEmpty()) {
-            return null;
-        }
-        Spacecraft heaviest = spacecrafts.get(0);
-        for (Spacecraft spacecraft : spacecrafts) {
-            if (spacecraft.getWeight() > heaviest.getWeight()) {
-                heaviest = spacecraft;
-            }
-        }
-        return heaviest.getName() + " - " + heaviest.getWeight() + "kg";
+        return spacecrafts.stream()
+                .max(Comparator.comparingInt(Spacecraft::getWeight))
+                .map(spacecraft -> spacecraft.getName() + " - " + spacecraft.getWeight() + "kg.")
+                .orElse("No spacecraft found");
     }
 
     public spaceCrafts.Spacecraft getSpacecraft(String name) {
@@ -67,34 +57,27 @@ public class LaunchPad {
     }
 
     public List<Spacecraft> getSpacecraftsByMissionType(String missionType) {
-        List<Spacecraft> result = new ArrayList<>();
-        for (Spacecraft spacecraft : spacecrafts) {
-            if (spacecraft.getMissionType().equals(missionType)) {
-                result.add(spacecraft);
-            }
-        }
+        List<Spacecraft> result = spacecrafts.stream()
+                .filter(spacecraft -> spacecraft.getMissionType().equals(missionType))
+                .collect(Collectors.toList());
+
         if (result.isEmpty()) {
             System.out.println("There are no spacecrafts to respond this criteria.");
         }
+
         return result;
     }
 
-
     public String getStatistics() {
-
-        test.spaceCrafts1.LaunchPad launchPad = new test.spaceCrafts1.LaunchPad(getName(), getCapacity());
-        StringBuilder build = new StringBuilder();
-
-        build.append("Spacecrafts launched from ").append(launchPad.getName()).append(":");
+        StringBuilder builder = new StringBuilder();
+        builder.append("Spacecrafts launched from ").append(name).append(":\n");
         if (spacecrafts.isEmpty()) {
-            build.append(System.lineSeparator()).append("none");
+            builder.append("none");
         } else {
-            build.append(System.lineSeparator());
             for (int i = 0; i < spacecrafts.size(); i++) {
-                build.append(i + 1).append(". ").append(spacecrafts.get(i).getName()).append(System.lineSeparator());
+                builder.append(i + 1).append(". ").append(spacecrafts.get(i).getName()).append("\n");
             }
         }
-//        spacecrafts.forEach(spacecraft -> build.append(spacecraft.getName()).append(System.lineSeparator()));
-        return build.toString().trim();
+        return builder.toString().trim();
     }
 }
