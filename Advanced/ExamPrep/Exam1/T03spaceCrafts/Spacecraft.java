@@ -39,5 +39,4 @@ public class Spacecraft {
     public String toString() {
         return "The mission of " + name + " was to reach " + target + " and to " + objective;
     }
-
 }
