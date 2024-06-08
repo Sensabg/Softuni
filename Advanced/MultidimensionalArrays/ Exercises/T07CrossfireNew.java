@@ -39,21 +39,18 @@ public class T07CrossfireNew {
         int col = removeArea[1];
         int range = removeArea[2];
 
-        // Destroy up and down
         for (int currentRow = row - range; currentRow <= row + range; currentRow++) {
             if (isInMatrix(currentRow, col, matrix)) {
                 matrix.get(currentRow).set(col, -1);
             }
         }
 
-        // Destroy left and right
         for (int currentCol = col - range; currentCol <= col + range; currentCol++) {
             if (isInMatrix(row, currentCol, matrix)) {
                 matrix.get(row).set(currentCol, -1);
             }
         }
 
-        // Cleanup matrix
         cleanMatrix(matrix);
     }
 
