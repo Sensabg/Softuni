@@ -26,14 +26,12 @@ public class T07Crossfire {
     }
 
     private static void removeElements(List<List<Integer>> matrix, int row, int col, int radius) {
-        // Destroy up, down
         for (int currentRow = row - radius; currentRow <= row + radius; currentRow++) {
             if (isInMatrix(currentRow, col, matrix)) {
                 matrix.get(currentRow).remove(col);
             }
         }
 
-        // Destroy left, right
         for (int currentCol = col + radius; currentCol >= col - radius; currentCol--) {
             if (isInMatrix(row, currentCol, matrix)) {
                 matrix.get(row).remove(currentCol);
