@@ -51,14 +51,14 @@ public class T01WormsAndHoles {
         } else {
             System.out.print("Worms left: ");
             System.out.println(wormsStack.reversed().toString()
-                    .replace("[", "")
-                    .replace("]", ""));
-        }
+                                                    .replace("[", "")
+                                                    .replace("]", ""));
+        ]
         if (!holesQue.isEmpty()) {
             System.out.print("Holes left: ");
             System.out.println(holesQue.toString()
-                    .replace("[", "")
-                    .replace("]", ""));
+                                       .replace("[", "")
+                                       .replace("]", ""));
         } else {
             System.out.println("Holes left: none");
         }
