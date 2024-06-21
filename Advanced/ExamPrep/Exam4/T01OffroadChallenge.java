@@ -3,7 +3,6 @@ package ExamPrep.Exam4;
 import java.util.*;
 import java.util.function.Consumer;
 
-
 public class T01OffroadChallenge {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -34,7 +33,6 @@ public class T01OffroadChallenge {
                 enoughFuel = false;
                 break;
             }
-
         }
 
         if (!enoughFuel) {
@@ -50,9 +48,7 @@ public class T01OffroadChallenge {
         if (altitude == 0) {
             System.out.println("John didn't reach any altitude.");
         } else {
-            System.out.printf("Reached altitudes: %s",String.valueOf(altitudes)
-                                                            .replace("[","")
-                                                            .replace("]",""));
+            System.out.printf("Reached altitudes: %s",String.valueOf(altitudes).replace("[","").replace("]",""));
         }
     }
 
