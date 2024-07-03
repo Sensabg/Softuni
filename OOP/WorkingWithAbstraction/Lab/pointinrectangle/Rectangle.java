@@ -1,7 +1,9 @@
 package WorkingWithAbstraction.Lab.pointinrectangle;
 
 class Rectangle {
+
     Point bottomLeft, topRight;
+
     public Rectangle(Point bottomLeft, Point topRight) {
         this.bottomLeft = bottomLeft;
         this.topRight = topRight;
