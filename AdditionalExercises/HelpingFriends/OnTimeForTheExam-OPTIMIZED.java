@@ -21,9 +21,7 @@ public class OnTimeNew {
         if (timeDiffInMinutes > 0) {
             System.out.printf("Late %s after the start", formattedTime);
         } else if (timeDiffInMinutes >= -30) {
-      
             System.out.println("On time");
-            
             if (timeDiffInMinutes != 0) {
                 System.out.printf("%s before the start", formattedTime);
             }
