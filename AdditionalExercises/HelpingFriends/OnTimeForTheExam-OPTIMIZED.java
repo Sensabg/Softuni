@@ -18,17 +18,17 @@ public class OnTimeNew {
                 String.format("%01d minutes", minutes) :
                 String.format("%d:%02d hours", hours, minutes);
 
-        if (timeDiffInMinutes > 30) {
+        if (timeDiffInMinutes > 0) {
             System.out.printf("Late %s after the start", formattedTime);
-        } else if (Math.abs(timeDiffInMinutes) < 30) {
-            System.out.printf("Early %s before the start", formattedTime);
-        } else {
+        } else if (timeDiffInMinutes >= -30) {
+      
             System.out.println("On time");
-
+            
             if (timeDiffInMinutes != 0) {
-                String direction = (timeDiffInMinutes < 0) ? "before" : "after";
-                System.out.printf("%s %s the start", formattedTime, direction);
+                System.out.printf("%s before the start", formattedTime);
             }
+        } else {
+            System.out.printf("Early %s before the start", formattedTime);
         }
     }
 
