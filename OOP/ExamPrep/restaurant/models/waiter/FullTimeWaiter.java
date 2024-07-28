@@ -10,7 +10,10 @@ public class FullTimeWaiter extends BaseWaiter {
     @Override
     public void work() {
         if (getEfficiency() > 0) {
-            setEfficiency(Math.max(0, getEfficiency() - 1));
+            setEfficiency(getEfficiency() - 1);
+        }
+        if (getEfficiency() < 0) {
+            setEfficiency(0);
         }
     }
 }

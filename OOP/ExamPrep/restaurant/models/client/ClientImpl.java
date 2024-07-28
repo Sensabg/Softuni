@@ -3,7 +3,9 @@ package restaurant.models.client;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class ClientImpl {
+import static restaurant.common.ExceptionMessages.WAITER_NAME_NULL_OR_EMPTY;
+
+public class ClientImpl implements Client {
     private String name;
     private Collection<String> clientOrders;
 
@@ -12,26 +14,24 @@ public class ClientImpl {
         this.clientOrders = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
-    }
-
     private void setName(String name) {
         if (name == null || name.trim().isEmpty()) {
-            throw new NullPointerException("Invalid name!");
+            throw new NullPointerException(WAITER_NAME_NULL_OR_EMPTY);
         }
         this.name = name;
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
     public Collection<String> getClientOrders() {
         return clientOrders;
     }
 
     public void addOrder(String order) {
-        this.clientOrders.add(order);
-    }
-
-    public void removeOrder(String order) {
-        this.clientOrders.remove(order);
+        clientOrders.add(order);
     }
 }

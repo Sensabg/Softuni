@@ -16,10 +16,6 @@ public class TakenOrdersImpl implements TakenOrders {
     }
 
     public void addOrder(String order) {
-        this.ordersList.add(order);
-    }
-
-    public void removeOrder(String order) {
-        this.ordersList.remove(order);
+        ordersList.add(order);
     }
 }

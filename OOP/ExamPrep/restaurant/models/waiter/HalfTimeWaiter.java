@@ -10,7 +10,10 @@ public class HalfTimeWaiter extends BaseWaiter {
     @Override
     public void work() {
         if (getEfficiency() > 0) {
-            setEfficiency(Math.max(0, getEfficiency() - 2));
+            setEfficiency(getEfficiency() - 2);
+        }
+        if (getEfficiency() < 0) {
+            setEfficiency(0);
         }
     }
 }

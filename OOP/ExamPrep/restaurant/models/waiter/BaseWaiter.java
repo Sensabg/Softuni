@@ -32,13 +32,12 @@ public abstract class BaseWaiter implements Waiter {
         return efficiency;
     }
 
-    protected void setEfficiency(int efficiency) {
+    public void setEfficiency(int efficiency) {
         if (efficiency < 0) {
             throw new IllegalArgumentException(WAITER_EFFICIENCY_LESS_THAN_ZERO);
         }
         this.efficiency = efficiency;
     }
-
 
     @Override
     public TakenOrders takenOrders() {
