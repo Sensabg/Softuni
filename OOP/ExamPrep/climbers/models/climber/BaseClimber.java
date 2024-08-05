@@ -1,6 +1,7 @@
 package climbers.models.climber;
 
 import climbers.models.roster.Roster;
+import climbers.models.roster.RosterImpl;
 
 import static climbers.common.ExceptionMessages.*;
 
@@ -15,12 +16,13 @@ public abstract class BaseClimber implements Climber {
     protected BaseClimber(String name, double strength) {
         setName(name);
         setStrength(strength);
+        this.roster = new RosterImpl();
     }
 
 
     @Override
     public boolean canClimb() {
-        return strength < 0;
+        return strength > 0;
     }
 
 
@@ -36,7 +38,6 @@ public abstract class BaseClimber implements Climber {
     public void setStrength(double strength) {
 
         if (strength < 0) {
-            this.strength = 0;
             throw new IllegalArgumentException(CLIMBER_STRENGTH_LESS_THAN_ZERO);
         }
 
