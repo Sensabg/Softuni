@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 import static dolphinarium.common.ConstantMessages.*;
 import static dolphinarium.common.ExceptionMessages.*;
 
-//TODO Implement all methods
 public class ControllerImpl implements Controller {
     private FoodRepository foodRepository;
     private Map<String, Pool> pools;
@@ -43,7 +42,6 @@ public class ControllerImpl implements Controller {
         }
 
         pools.put(pool.getName(), pool);
-
         return String.format(SUCCESSFULLY_ADDED_POOL_TYPE, poolType, poolName);
     }
 
@@ -55,16 +53,15 @@ public class ControllerImpl implements Controller {
             case "Squid" -> new Squid();
             default -> throw new IllegalArgumentException(INVALID_FOOD_TYPE);
         };
+
         foodRepository.add(food);
         return String.format(SUCCESSFULLY_BOUGHT_FOOD_TYPE, foodType);
     }
 
     @Override
     public String addFoodToPool(String poolName, String foodType) {
-        Food food = foodRepository.findByType(foodType);
-        if (food == null) {
-            throw new IllegalArgumentException(String.format(NO_FOOD_FOUND, foodType));
-        }
+        Food food = Optional.ofNullable(foodRepository.findByType(foodType))
+                .orElseThrow(() -> new IllegalArgumentException(String.format(NO_FOOD_FOUND, foodType)));
 
         Pool pool = pools.get(poolName);
         pool.addFood(food);
@@ -80,14 +77,11 @@ public class ControllerImpl implements Controller {
             default -> throw new IllegalArgumentException(INVALID_DOLPHIN_TYPE);
         };
 
-        boolean dolphinNameMatches = pools.values().stream()
-                .anyMatch(p -> p.getDolphins()
-                        .stream()
-                        .anyMatch(d -> d.getName().equals(dolphinName)));
-
-        if (dolphinNameMatches) {
-            throw new IllegalArgumentException(DOLPHIN_EXISTS);
-        }
+        pools.values().stream()
+                .flatMap(p -> p.getDolphins().stream())
+                .filter(d -> d.getName().equals(dolphinName))
+                .findAny()
+                .ifPresent(d -> { throw new IllegalArgumentException(DOLPHIN_EXISTS); });
 
         Pool pool = pools.get(poolName);
         String poolType = pool.getClass().getSimpleName();
@@ -104,7 +98,6 @@ public class ControllerImpl implements Controller {
         }
 
         pool.addDolphin(dolphin);
-
         return String.format(SUCCESSFULLY_ADDED_DOLPHIN_IN_POOL, dolphinType, dolphinName, poolName);
     }
 
@@ -127,15 +120,13 @@ public class ControllerImpl implements Controller {
     public String playWithDolphins(String poolName) {
         Pool pool = pools.get(poolName);
 
-        Collection<Dolphin> dolphins = pool.getDolphins();
-        if (dolphins.isEmpty()) {
-            throw new IllegalArgumentException(NO_DOLPHINS);
-        }
+        Collection<Dolphin> dolphins = Optional.of(pool.getDolphins())
+                .filter(d -> !d.isEmpty())
+                .orElseThrow(() -> new IllegalArgumentException(NO_DOLPHINS));
 
         int exhaustedDolphins = dolphins.stream()
                 .peek(Dolphin::jump)
                 .filter(d -> d.getEnergy() <= 0).toList().size();
-
 
         pool.getDolphins().removeIf(d -> d.getEnergy() <= 0);
         return String.format(DOLPHINS_PLAY, poolName, exhaustedDolphins);
