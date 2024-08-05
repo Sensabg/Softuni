@@ -4,6 +4,7 @@ import dolphinarium.entities.foods.Food;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class FoodRepositoryImpl implements FoodRepository {
     private Collection<Food> foods;
@@ -24,11 +25,9 @@ public class FoodRepositoryImpl implements FoodRepository {
 
     @Override
     public Food findByType(String type) {
-        for (Food food : foods) {
-            if (food.getClass().getSimpleName().equals(type)) {
-                return food;
-            }
-        }
-        return null;
+        return foods.stream()
+                .filter(f -> f.getClass().getSimpleName().equals(type))
+                .findFirst()
+                .orElse(null);
     }
 }

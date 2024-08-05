@@ -9,6 +9,6 @@ public class SpinnerDolphin extends BaseDolphin {
 
     @Override
     public void jump() {
-        setEnergy(super.getEnergy() - ADDITIONAL_JUMP_ENERGY_COST);
+        decreaseEnergy(ADDITIONAL_JUMP_ENERGY_COST);
     }
 }

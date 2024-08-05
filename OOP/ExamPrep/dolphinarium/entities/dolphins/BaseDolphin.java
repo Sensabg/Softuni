@@ -5,7 +5,7 @@ import dolphinarium.entities.foods.Food;
 public abstract class BaseDolphin implements Dolphin {
     private String name;
     private int energy;
-
+    private static final int JUMP_ENERGY_COST = 10;
     protected BaseDolphin(String name, int energy) {
         setName(name);
         setEnergy(energy);
@@ -24,18 +24,20 @@ public abstract class BaseDolphin implements Dolphin {
 
     public int getEnergy() {
 
-        return Math.max(0, energy);
+        return energy;
     }
 
     protected void setEnergy(int energy) {
-        this.energy = Math.max(energy, 0);
+        this.energy = energy;
     }
 
     public void jump() {
-        setEnergy(this.energy - 10);
+        decreaseEnergy(JUMP_ENERGY_COST);
     }
-
+    protected void decreaseEnergy(int decrement) {
+        setEnergy(Math.max(energy -= decrement, 0));
+    }
     public void eat(Food food) {
-        setEnergy(this.energy + food.getCalories());
+        setEnergy(energy + food.getCalories());
     }
 }

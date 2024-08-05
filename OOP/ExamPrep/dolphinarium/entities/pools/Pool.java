@@ -4,7 +4,7 @@ import dolphinarium.entities.dolphins.Dolphin;
 import dolphinarium.entities.foods.Food;
 
 import java.util.Collection;
-//TODO Implement all methods
+
 
 public interface Pool {
     String getName();
