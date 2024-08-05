@@ -95,7 +95,7 @@ public class ControllerImpl implements Controller {
         boolean canLiveInPool = switch (dolphinType) {
             case "BottleNoseDolphin" -> poolType.equals("DeepWaterPool");
             case "SpinnerDolphin" -> poolType.equals("ShallowWaterPool");
-            case "SpottedDolphin" -> true; 
+            case "SpottedDolphin" -> true;
             default -> false;
         };
 
@@ -143,19 +143,11 @@ public class ControllerImpl implements Controller {
 
     @Override
     public String getStatistics() {
-        return pools.values()
-                .stream()
-                .map(this::formatPoolStatistics)
-                .collect(Collectors.joining(System.lineSeparator()));
-    }
-
-    private String formatPoolStatistics(Pool pool) {
-        String dolphinInfo = pool.getDolphins().stream()
-                .map(d -> d.getName() + " - " + d.getEnergy())
-                .collect(Collectors.joining(DELIMITER));
-
-        dolphinInfo = dolphinInfo.isEmpty() ? NONE : dolphinInfo;
-
-        return String.format(DOLPHINS_FINAL, pool.getName()) + System.lineSeparator() + dolphinInfo;
+        return pools.values().stream()
+                .map(pool -> String.format(DOLPHINS_FINAL, pool.getName()) + System.lineSeparator() +
+                        (pool.getDolphins().isEmpty() ? NONE : pool.getDolphins().stream()
+                                .map(d -> d.getName() + " - " + d.getEnergy())
+                                .collect(Collectors.joining(DELIMITER))))
+                                .collect(Collectors.joining(System.lineSeparator()));
     }
 }
