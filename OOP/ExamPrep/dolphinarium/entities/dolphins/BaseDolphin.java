@@ -2,42 +2,41 @@ package dolphinarium.entities.dolphins;
 
 import dolphinarium.entities.foods.Food;
 
+import static dolphinarium.common.ExceptionMessages.DOLPHIN_NAME_NULL_OR_EMPTY;
+
 public abstract class BaseDolphin implements Dolphin {
     private String name;
     private int energy;
-    private static final int JUMP_ENERGY_COST = 10;
+
     protected BaseDolphin(String name, int energy) {
         setName(name);
-        setEnergy(energy);
-    }
-
-    public String getName() {
-        return name;
+        this.energy = energy;
     }
 
     private void setName(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new NullPointerException("Dolphin name cannot be null or empty.");
+        if (name == null || name.isBlank()) {
+            throw new NullPointerException(DOLPHIN_NAME_NULL_OR_EMPTY);
         }
         this.name = name;
     }
 
-    public int getEnergy() {
+    protected void decreaseEnergy(int decrement) {
+        energy -= decrement;
+        energy = Math.max(energy, 0);
+    }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int getEnergy() {
         return energy;
     }
 
-    protected void setEnergy(int energy) {
-        this.energy = energy;
-    }
-
-    public void jump() {
-        decreaseEnergy(JUMP_ENERGY_COST);
-    }
-    protected void decreaseEnergy(int decrement) {
-        setEnergy(Math.max(energy -= decrement, 0));
-    }
+    @Override
     public void eat(Food food) {
-        setEnergy(energy + food.getCalories());
+        energy += food.getCalories();
     }
 }

@@ -71,39 +71,32 @@ public class EngineImpl implements Engine {
         return result;
     }
     private String addPool(String[] data) {
-        //TODO
-        return null;
+        return controller.addPool(data[0], data[1]);
     }
 
     private String buyFood(String[] data) {
-        //TODO
-        return null;
+        return controller.buyFood(data[0]);
     }
 
     private String addFoodToPool(String[] data) {
-        //TODO
-        return null;
+        return controller.addFoodToPool(data[0], data[1]);
     }
 
 
     private String addDolphin(String[] data) {
-        //TODO
-        return null;
+        return controller.addDolphin(data[0], data[1], data[2], Integer.parseInt(data[3]));
     }
 
     private String feedDolphins(String[] data) {
-        //TODO
-        return null;
+        return controller.feedDolphins(data[0], data[1]);
     }
 
     private String playWithDolphins(String[] data) {
-        //TODO
-        return null;
+        return controller.playWithDolphins(data[0]);
     }
 
 
     private String getStatistics() {
-        //TODO
-        return null;
+        return controller.getStatistics();
     }
 }
