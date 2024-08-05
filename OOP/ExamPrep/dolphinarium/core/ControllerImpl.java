@@ -92,13 +92,12 @@ public class ControllerImpl implements Controller {
         Pool pool = pools.get(poolName);
         String poolType = pool.getClass().getSimpleName();
 
-        boolean canLiveInPool = true;
-
-        if (dolphinType.equals("BottleNoseDolphin") && !poolType.equals("DeepWaterPool")) {
-            canLiveInPool = false;
-        } else if (dolphinType.equals("SpinnerDolphin") && !poolType.equals("ShallowWaterPool")) {
-            canLiveInPool = false;
-        }
+        boolean canLiveInPool = switch (dolphinType) {
+            case "BottleNoseDolphin" -> poolType.equals("DeepWaterPool");
+            case "SpinnerDolphin" -> poolType.equals("ShallowWaterPool");
+            case "SpottedDolphin" -> true; 
+            default -> false;
+        };
 
         if (!canLiveInPool) {
             return POOL_NOT_SUITABLE;
@@ -133,13 +132,11 @@ public class ControllerImpl implements Controller {
             throw new IllegalArgumentException(NO_DOLPHINS);
         }
 
-        int exhaustedDolphins = 0;
-        for (Dolphin dolphin : dolphins) {
-            dolphin.jump();
-            if (dolphin.getEnergy() <= 0) {
-                exhaustedDolphins++;
-            }
-        }
+        int exhaustedDolphins = dolphins.stream()
+                .peek(Dolphin::jump)
+                .filter(d -> d.getEnergy() <= 0).toList().size();
+
+
         pool.getDolphins().removeIf(d -> d.getEnergy() <= 0);
         return String.format(DOLPHINS_PLAY, poolName, exhaustedDolphins);
     }
