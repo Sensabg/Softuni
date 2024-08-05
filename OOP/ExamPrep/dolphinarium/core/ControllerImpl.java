@@ -142,3 +142,55 @@ public class ControllerImpl implements Controller {
                                 .collect(Collectors.joining(System.lineSeparator()));
     }
 }
+
+
+
+                          // GET STATISTICS Alternatives
+
+// ------------------------------------------------------------------------------------------------------ //
+
+//       pools.values().stream()
+//            .map(pool -> String.format(DOLPHINS_FINAL, pool.getName()) + System.lineSeparator() +
+//                    pool.getDolphins().stream()
+//                        .map(d -> d.getName() + " - " + d.getEnergy())
+//                        .reduce((d1, d2) -> d1 + DELIMITER + d2)
+//                        .orElse(NONE))
+//                        .collect(Collectors.joining(System.lineSeparator()));
+
+// ------------------------------------------------------------------------------------------------------ //
+
+//   pools.values().stream()
+//                 .map(pool -> String.format(DOLPHINS_FINAL, pool.getName())
+//                        + System.lineSeparator() +
+//                      pool.getDolphins().stream()
+//                           .map(d -> d.getName() + " - " + d.getEnergy())
+//                                      .collect(Collectors.joining(DELIMITER, "",
+//                      pool.getDolphins().isEmpty() ? NONE : "")))
+//                                      .collect(Collectors.joining(System.lineSeparator()));
+
+// ------------------------------------------------------------------------------------------------------ //
+
+//   return pools.values().stream()
+//            .map(pool -> String.format(DOLPHINS_FINAL, pool.getName()) + System.lineSeparator() +
+//                    pool.getDolphins().stream()
+//                        .map(d -> d.getName() + " - " + d.getEnergy())
+//                        .collect(Collectors.collectingAndThen(
+//                                Collectors.joining(DELIMITER),
+//                                s -> s.isEmpty() ? NONE : s)))
+//                        .collect(Collectors.joining(System.lineSeparator()));
+
+// ------------------------------------------------------------------------------------------------------ //
+
+//   return pools.values()
+//                .stream()
+//                .map(this::formatPoolStatistics)
+//                .collect(Collectors.joining(System.lineSeparator()));
+//
+//    private String formatPoolStatistics(Pool pool) {
+//        String dolphinInfo = pool.getDolphins().stream()
+//                .map(d -> d.getName() + " - " + d.getEnergy())
+//                .collect(Collectors.joining(DELIMITER));
+//
+//        dolphinInfo = dolphinInfo.isEmpty() ? NONE : dolphinInfo;
+//
+//        return String.format(DOLPHINS_FINAL, pool.getName()) + System.lineSeparator() + dolphinInfo;
