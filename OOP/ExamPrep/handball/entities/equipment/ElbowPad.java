@@ -7,5 +7,4 @@ public class ElbowPad extends BaseEquipment {
     public ElbowPad() {
         super(PROTECTION, PRICE);
     }
-
 }
