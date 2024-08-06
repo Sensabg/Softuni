@@ -18,6 +18,7 @@ import static handball.common.ConstantMessages.*;
 import static handball.common.ExceptionMessages.*;
 
 public class ControllerImpl implements Controller {
+
     private EquipmentRepository equipment;
     private Map<String, Gameplay> gameplays;
 
