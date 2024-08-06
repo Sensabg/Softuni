@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class EngineImpl implements Engine {
+
     private Controller controller;
     private BufferedReader reader;
 
@@ -29,7 +30,6 @@ public class EngineImpl implements Engine {
             } catch (NullPointerException | IllegalArgumentException | IllegalStateException | IOException e) {
                 result = e.getMessage();
             }
-
             System.out.println(result);
         }
     }
