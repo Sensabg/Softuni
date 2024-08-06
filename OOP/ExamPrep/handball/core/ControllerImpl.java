@@ -10,7 +10,7 @@ import handball.entities.team.Bulgaria;
 import handball.entities.team.Germany;
 import handball.entities.team.Team;
 import handball.repositories.EquipmentRepository;
-import handball.repositories.Repository;
+
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -29,7 +29,6 @@ public class ControllerImpl implements Controller {
 
     @Override
     public String addGameplay(String gameplayType, String gameplayName) {
-
         Gameplay currentGameplay = switch (gameplayType) {
             case "Outdoor" -> new Outdoor(gameplayName);
             case "Indoor" -> new Indoor(gameplayName);
@@ -64,8 +63,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public String addTeam(String gameplayName, String teamType, String teamName, String country, int advantage) {
-
-        Team team = switch (teamType) {
+        Team currentTeam = switch (teamType) {
             case "Bulgaria" -> new Bulgaria(teamName, country, advantage);
             case "Germany" -> new Germany(teamName, country, advantage);
             default -> throw new IllegalArgumentException(INVALID_TEAM_TYPE);
@@ -83,7 +81,7 @@ public class ControllerImpl implements Controller {
             return GAMEPLAY_NOT_SUITABLE;
         }
 
-        this.gameplays.get(gameplayName).addTeam(team);
+        this.gameplays.get(gameplayName).addTeam(currentTeam);
         return String.format(SUCCESSFULLY_ADDED_TEAM_IN_GAMEPLAY, teamType, gameplayName);
     }
 
