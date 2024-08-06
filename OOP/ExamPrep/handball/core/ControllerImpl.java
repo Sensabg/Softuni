@@ -21,7 +21,7 @@ public class ControllerImpl implements Controller {
 
     private EquipmentRepository equipment;
     private Map<String, Gameplay> gameplays;
-
+    
     public ControllerImpl() {
         this.equipment = new EquipmentRepository();
         this.gameplays = new HashMap<>();
@@ -110,45 +110,46 @@ public class ControllerImpl implements Controller {
 }
                                  //// GET STATISTICS Alternatives
 // ------------------------------------------------------------------------------------------------------ //
-//
+//        @Override
+//        public String getStatistics() {
 //        StringBuilder output = new StringBuilder();
 //        this.gameplays.values().forEach(output::append);
 //        return output.toString().trim();
-//}
+//        }
 // ------------------------------------------------------------------------------------------------------ //
-//@Override
-//public String getStatistics() {
-//    return gameplays.values().stream()
-//            .map(Gameplay::toString)
-//            .reduce((a, b) -> a + System.lineSeparator() + b)
-//            .orElse("")
-//            .trim();
-//}
+//      @Override
+//      public String getStatistics() {
+//          return gameplays.values().stream()
+//                  .map(Gameplay::toString)
+//                  .reduce((a, b) -> a + System.lineSeparator() + b)
+//                  .orElse("")
+//                  .trim();
+//      }
 // ------------------------------------------------------------------------------------------------------ //
-//@Override
-//public String getStatistics() {
-//    return gameplays.values().stream()
-//            .map(Gameplay::toString)
-//            .collect(Collectors.collectingAndThen(
-//                    Collectors.joining(System.lineSeparator()),
-//                    String::trim));
-//}
+//     @Override
+//     public String getStatistics() {
+//         return gameplays.values().stream()
+//                 .map(Gameplay::toString)
+//                 .collect(Collectors.collectingAndThen(
+//                         Collectors.joining(System.lineSeparator()),
+//                         String::trim));
+//     }
 // ------------------------------------------------------------------------------------------------------ //
-//@Override
-//public String getStatistics() {
-//    return String.join(System.lineSeparator(),
-//            gameplays.values().stream()
-//                    .map(Gameplay::toString)
-//                    .collect(Collectors.toList())).trim();
-//}
+//     @Override
+//     public String getStatistics() {
+//         return String.join(System.lineSeparator(),
+//                 gameplays.values().stream()
+//                         .map(Gameplay::toString)
+//                         .collect(Collectors.toList())).trim();
+//     }
 // ------------------------------------------------------------------------------------------------------ //
-//@Override
-//public String getStatistics() {
-//    return gameplays.values().stream()
-//            .collect(Collector.of(
-//                    StringBuilder::new,
-//                    (sb, gameplay) -> sb.append(gameplay.toString()).append(System.lineSeparator()),
-//                    StringBuilder::append,
-//                    sb -> sb.toString().trim()));
-//}
+//    @Override
+//    public String getStatistics() {
+//        return gameplays.values().stream()
+//                .collect(Collector.of(
+//                        StringBuilder::new,
+//                        (sb, gameplay) -> sb.append(gameplay.toString()).append(System.lineSeparator()),
+//                        StringBuilder::append,
+//                        sb -> sb.toString().trim()));
+//    }
 // ------------------------------------------------------------------------------------------------------ //
