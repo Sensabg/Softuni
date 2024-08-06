@@ -4,11 +4,8 @@ import static handball.common.ExceptionMessages.*;
 
 public abstract  class BaseTeam implements Team {
 
-
     private String name;
-
     private String country;
-
     private int advantage;
 
     protected BaseTeam(String name, String country, int advantage) {
