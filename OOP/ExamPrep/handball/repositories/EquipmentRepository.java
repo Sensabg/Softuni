@@ -7,7 +7,6 @@ import handball.entities.equipment.Kneepad;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
 public class EquipmentRepository implements Repository {
 
     private Collection<Equipment> equipments;
