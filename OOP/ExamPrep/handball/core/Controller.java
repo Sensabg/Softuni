@@ -8,7 +8,4 @@ public interface Controller {
     String playInGameplay(String gameplayName);
     public String percentAdvantage(String gameplayName);
     String getStatistics();
-
-
-
 }
