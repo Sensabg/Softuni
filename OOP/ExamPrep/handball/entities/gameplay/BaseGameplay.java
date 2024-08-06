@@ -6,6 +6,7 @@ import handball.entities.team.Team;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static handball.common.ExceptionMessages.*;
@@ -82,32 +83,37 @@ public abstract class BaseGameplay implements Gameplay {
     }
 
     private String getTeamNames() {
-        return teams.stream()
-                .map(Team::getName)
-                .collect(Collectors.joining(" ", "", teams.isEmpty() ? "none" : ""));
+        return Optional.of(teams.stream().map(Team::getName)
+                .collect(Collectors.joining(" ")))
+                .filter(s -> !s.isEmpty())
+                .orElse("none");
     }
 }
-
-////        Optional.of(teams.stream().map(Team::getName).collect(Collectors.joining(" ")))
-////                .filter(s -> !s.isEmpty())
-////                .orElse("none");
-
-
-// private String getTeamNames()
-//        return teams.stream()
+                      //toSTRING + getTeamNames Alternatives
+// ------------------------------------------------------------------------------------------------------ //
+//           teams.stream()
 //                .map(Team::getName)
-//                .collect(Collectors.collectingAndThen(Collectors.joining(" "),
-//                        s -> s.isEmpty() ? "none" : s));
-
-
-// private String getTeamNames()
-//      teams.stream()
-//           .map(Team::getName)
-//           .flatMap(Optional::stream)
-//           .collect(Collectors.collectingAndThen( Collectors.joining(" "),
-//                    s -> s.isEmpty() ? "none" : s))
-
-
+//                .collect(Collectors.joining(" ", "", teams.isEmpty() ? "none" : ""));
+//
+// ------------------------------------------------------------------------------------------------------ //
+//
+//     private String getTeamNames()
+//           return teams.stream()
+//                   .map(Team::getName)
+//                   .collect(Collectors.collectingAndThen(Collectors.joining(" "),
+//                           s -> s.isEmpty() ? "none" : s));
+//
+// ------------------------------------------------------------------------------------------------------ //
+//
+//       private String getTeamNames()
+//          teams.stream()
+//               .map(Team::getName)
+//               .flatMap(Optional::stream)
+//               .collect(Collectors.collectingAndThen( Collectors.joining(" "),
+//                        s -> s.isEmpty() ? "none" : s))
+//    
+// ------------------------------------------------------------------------------------------------------ //
+//
 //    @Override
 //    public String toString() {
 //        return String.format("%s %s\nTeam: %s\nEquipment: %d, Protection: %d",
@@ -117,10 +123,10 @@ public abstract class BaseGameplay implements Gameplay {
 //                        .collect(Collectors.collectingAndThen(Collectors.mapping(Team::getName,
 //                         Collectors.joining(" ")), s -> s.isEmpty() ? "none" : s)),
 //                equipments.size(),
-//                allProtection()
-//        );
-//    }
-
+//                allProtection());
+//     }
+// ------------------------------------------------------------------------------------------------------ //
+//
 //    @Override
 //    public String toString() {
 //        return String.format("%s %s\nTeam: %s\nEquipment: %d, Protection: %d",
@@ -133,7 +139,9 @@ public abstract class BaseGameplay implements Gameplay {
 //                        .orElse("none"),
 //                equipments.size(),
 //                allProtection();
-
+//
+// ------------------------------------------------------------------------------------------------------ //
+//
 //    @Override
 //    public String toString() {
 //        return String.format("%s %s\nTeam: %s\nEquipment: %d, Protection: %d",
@@ -142,66 +150,65 @@ public abstract class BaseGameplay implements Gameplay {
 //                teams.stream()
 //                        .map(Team::getName)
 //                        .collect(Collectors.collectingAndThen(Collectors.joining(" "),
-//                                s -> s.isEmpty() ? "none" : s)), equipments.size(), allProtection()
-//        );
+//                                s -> s.isEmpty() ? "none" : s)), equipments.size(), allProtection());
 
-//@Override
-//public String toString() {
-//    return String.format("%s %s\nTeam: %s\nEquipment: %d, Protection: %d",
-//        this.getName(),
-//        this.getClass().getSimpleName(),
-//        teams.stream()
-//             .map(Team::getName)
-//             .flatMap(Optional::stream)
-//             .collect(Collectors.collectingAndThen(
-//                 Collectors.joining(" "), s -> s.isEmpty() ? "none" : s)),
-//        equipments.size(),
-//        allProtection()
-//    );
-//}
-
-
-//@Override
-//public String toString() {
-//    return String.format("%s %s\nTeam: %s\nEquipment: %d, Protection: %d",
-//        this.getName(),
-//        this.getClass().getSimpleName(),
-//        teams.stream()
-//             .map(Team::getName)
-//             .collect(Collectors.joining(" ", "", teams.isEmpty() ? "none" : "")),
-//        equipments.size(),
-//        allProtection()
-//    );
-//}
-
-//@Override
-//public String toString() {
-//    return String.format("%s %s\nTeam: %s\nEquipment: %d, Protection: %d",
-//        this.getName(),
-//        this.getClass().getSimpleName(),
-//        teams.stream()
-//             .map(Team::getName)
-//             .collect(Collectors.joining(" ", "", teams.isEmpty() ? "none" : "")),
-//        equipments.size(),
-//        allProtection()
-//    );
-//}
-
-
-//@Override
-//public String toString() {
-//    return String.format("%s %s\nTeam: %s\nEquipment: %d, Protection: %d",
-//        this.getName(),
-//        this.getClass().getSimpleName(),
-//        getTeamNames(),
-//        equipments.size(),
-//        allProtection()
-//    );
-//}
+// ------------------------------------------------------------------------------------------------------ //
 //
-//private String getTeamNames() {
-//    return teams.stream()
-//                .map(Team::getName)
-//                .collect(Collectors.collectingAndThen(
-//                    Collectors.joining(" "), s -> s.isEmpty() ? "none" : s));
+//      @Override
+//      public String toString() {
+//        return String.format("%s %s\nTeam: %s\nEquipment: %d, Protection: %d",
+//            this.getName(),
+//            this.getClass().getSimpleName(),
+//            teams.stream()
+//                 .map(Team::getName)
+//                 .flatMap(Optional::stream)
+//                 .collect(Collectors.collectingAndThen(
+//                     Collectors.joining(" "), s -> s.isEmpty() ? "none" : s)),
+//            equipments.size(),
+//            allProtection());
 //}
+// ------------------------------------------------------------------------------------------------------ //
+//
+//    @Override
+//    public String toString() {
+//       return String.format("%s %s\nTeam: %s\nEquipment: %d, Protection: %d",
+//           this.getName(),
+//           this.getClass().getSimpleName(),
+//           teams.stream()
+//                .map(Team::getName)
+//                .collect(Collectors.joining(" ", "", teams.isEmpty() ? "none" : "")),
+//           equipments.size(),
+//           allProtection();
+//    }   
+// ------------------------------------------------------------------------------------------------------ //
+//
+//     @Override
+//      public String toString() {
+//        return String.format("%s %s\nTeam: %s\nEquipment: %d, Protection: %d",
+//            this.getName(),
+//            this.getClass().getSimpleName(),
+//            teams.stream()
+//                 .map(Team::getName)
+//                 .collect(Collectors.joining(" ", "", teams.isEmpty() ? "none" : "")),
+//            equipments.size(),
+//            allProtection());
+//       }
+// ------------------------------------------------------------------------------------------------------ //
+//
+//     @Override
+//      public String toString() {
+//        return String.format("%s %s\nTeam: %s\nEquipment: %d, Protection: %d",
+//            this.getName(),
+//            this.getClass().getSimpleName(),
+//            getTeamNames(),
+//            equipments.size(),
+//            allProtection());
+//        }
+//
+//        private String getTeamNames() {
+//           return teams.stream()
+//                       .map(Team::getName)
+//                       .collect(Collectors.collectingAndThen(
+//                           Collectors.joining(" "), s -> s.isEmpty() ? "none" : s));
+//        }       
+// ------------------------------------------------------------------------------------------------------ //
