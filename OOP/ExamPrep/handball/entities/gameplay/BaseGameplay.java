@@ -10,15 +10,12 @@ import java.util.stream.Collectors;
 
 import static handball.common.ExceptionMessages.*;
 
-
 public abstract class BaseGameplay implements Gameplay {
 
     private String name;
     private int capacity;
-
     private Collection<Equipment> equipments;
     private Collection<Team> teams;
-
 
     protected BaseGameplay(String name, int capacity) {
         setName(name);
@@ -88,7 +85,6 @@ public abstract class BaseGameplay implements Gameplay {
         return teams.stream()
                 .map(Team::getName)
                 .collect(Collectors.joining(" ", "", teams.isEmpty() ? "none" : ""));
-
     }
 }
 
