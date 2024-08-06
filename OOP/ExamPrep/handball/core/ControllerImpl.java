@@ -11,7 +11,6 @@ import handball.entities.team.Germany;
 import handball.entities.team.Team;
 import handball.repositories.EquipmentRepository;
 
-
 import java.util.*;
 import java.util.stream.Collectors;
 
