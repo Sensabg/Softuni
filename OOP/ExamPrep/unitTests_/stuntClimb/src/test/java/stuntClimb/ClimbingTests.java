@@ -51,7 +51,7 @@ public class ClimbingTests {
         });
     }
 
-    public void whenWaiterWithThisNameExist_thenExceptionIsThrown(){
+    public void whenClimberWithThisNameExist_thenExceptionIsThrown(){
 
         Climbing climbing = new Climbing("Gosho", 5);
 
@@ -63,7 +63,7 @@ public class ClimbingTests {
         });
     }
     @Test
-    public void whenWaiterExistByThisName_thenReturnTrue(){
+    public void whenClimberExistByThisName_thenReturnTrue(){
 
         Climbing climbing = new Climbing("Gosho", 5);
 
@@ -74,7 +74,7 @@ public class ClimbingTests {
         Assertions.assertTrue(result);
     }
     @Test
-    public void whenWaiterDoesNotExistByThisName_thenReturnFalse(){
+    public void whenClimberDoesNotExistByThisName_thenReturnFalse(){
 
         Climbing climbing = new Climbing("Gosho", 5);
 
