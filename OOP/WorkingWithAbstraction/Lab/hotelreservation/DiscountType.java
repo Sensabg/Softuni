@@ -20,6 +20,7 @@ enum DiscountType {
     public String getClientStatus() {
         return status;
     }
+
     public static DiscountType parseString(String status) {
         return switch (status) {
             case "VIP" -> VIP;
@@ -28,5 +29,4 @@ enum DiscountType {
             default -> throw new IllegalArgumentException(String.format("%s not a valid status!", status));
         };
     }
-
 }
