@@ -6,9 +6,7 @@ public class PriceCalculator {
     private Season season;
     private DiscountType discountType;
 
-    public PriceCalculator(double pricePerDay, int numberOfDays,
-                           Season season, DiscountType discountType) {
-
+    public PriceCalculator(double pricePerDay, int numberOfDays, Season season, DiscountType discountType) {
         this.pricePerDay = pricePerDay;
         this.numberOfDays = numberOfDays;
         this.season = season;
@@ -21,5 +19,4 @@ public class PriceCalculator {
 
         return basePrice - discount;
     }
-
 }
