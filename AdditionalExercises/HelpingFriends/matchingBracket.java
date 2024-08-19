@@ -26,13 +26,12 @@ public class matchingBracket {
             balanced = false;
         }
 
+        System.out.println(balanced ? "BALANCED" : "UNBALANCED");
 
-        if(balanced){
-            System.out.println("BALANCED");
-        } else {
-            System.out.println("UNBALANCED");
-        }
-
-       // System.out.println(balanced ? "BALANCED" : "UNBALANCED");
+        // if(balanced){
+        //     System.out.println("BALANCED");
+        // } else {
+        //     System.out.println("UNBALANCED");
+        // }  
     }
 }
