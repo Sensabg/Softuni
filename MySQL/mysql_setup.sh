@@ -71,10 +71,10 @@ FLUSH PRIVILEGES;
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'new_password';
 
 # Create User
-CREATE USER 'danieldinev'@'localhost' IDENTIFIED BY 'your_password';
+CREATE USER 'yourUsername'@'localhost' IDENTIFIED BY 'your_password';
 
 # Give the appropriate privileges:
-GRANT ALL PRIVILEGES ON *.* TO 'danieldinev'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'yourUsername'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;                                                       
                                                                       
 #==============================================================================================================================================#
