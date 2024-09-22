@@ -52,8 +52,8 @@ source ~/.zshrc
 #==============================================================================================================================================#
 
 # Check for errors:
-cat /opt/homebrew/var/mysql/daniels-air.err
-tail -n 50 /opt/homebrew/var/mysql/daniels-air.err
+cat /opt/homebrew/var/mysql/macbook-air.err
+tail -n 50 /opt/homebrew/var/mysql/macbook-air.err
 
 #==============================================================================================================================================#
 
