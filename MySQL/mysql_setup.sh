@@ -17,28 +17,34 @@ nano ~/.zshrc
 # Add the following:
 export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
 
-#====== SO THAT YOU CAN START, STOP, RESTART, CHECK STATUS, CONNECT, FROM ANYWHERE =====#
-
-#start/stop/restart.
-mysql.server start
-mysql.server stop
-mysql.server restart
-# Connect to server.
-mysql -u "yourUsername" -p
-# Check status.
-mysql.server status
-ps aux | grep mysqld
-
-#======== INSTEAD OF ===================================================================#
-# start/stop/restart.
-/opt/homebrew/opt/mysql@8.0/bin/mysql.server start
-/opt/homebrew/opt/mysql@8.0/bin/mysql.server stop
-/opt/homebrew/opt/mysql@8.0/bin/mysql.server restart
-# Connect to server.
-/opt/homebrew/opt/mysql@8.0/bin/mysql -u "yourUsername" -p
-# Check status.
-/opt/homebrew/opt/mysql@8.0/bin/mysql.server status
-#========================================================================================#
+#----------- START, STOP, RESTART, CHECK STATUS, AND CONNECT, FROM ANYWHERE -------------#|
+                                                                                          #\ 
+# start/stop/restart.                                                                     #|
+mysql.server start                                                                        #|
+mysql.server stop                                                                         #|
+mysql.server restart                                                                      #|
+                                                                                          #|
+# Connect to server.                                                                      #|
+mysql -u "yourUsername" -p                                                                #|
+                                                                                          #|
+# Check status.                                                                           #|
+mysql.server status                                                                       #|
+ps aux | grep mysqld                                                                      #|
+                                                                                          #/     
+#------------------- INSTEAD OF ---------------------------------------------------------#|
+                                                                                          #\  
+# start/stop/restart.                                                                     #|
+/opt/homebrew/opt/mysql@8.0/bin/mysql.server start                                        #| 
+/opt/homebrew/opt/mysql@8.0/bin/mysql.server stop                                         #| 
+/opt/homebrew/opt/mysql@8.0/bin/mysql.server restart                                      #| 
+                                                                                          #|
+# Connect to server.                                                                      #| 
+/opt/homebrew/opt/mysql@8.0/bin/mysql -u "yourUsername" -p                                #|
+                                                                                          #| 
+# Check status.                                                                           #| 
+/opt/homebrew/opt/mysql@8.0/bin/mysql.server status                                       #| 
+                                                                                          #/     
+#----------------------------------------------------------------------------------------#| 
 
 # Reload:
 source ~/.zshrc
@@ -100,7 +106,7 @@ collation-server = utf8mb4_unicode_ci                                   #|
 # Test connection via Terminal                                         
 mysql -u yourUsername -p -h localhost                                  
                                                                         
-#==============================================================================================================================================#
+#======================================================#|
                                                         #\
 # CHECK HOSTNAME:                                       #|
 SHOW VARIABLES LIKE 'hostname';                         #| 
