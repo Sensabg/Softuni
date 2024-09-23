@@ -1,16 +1,17 @@
 -- 1. -------------------------------------------------------------------------------------    
         CREATE SCHEMA Minions;
+        USE Minions;
 -- 2. -------------------------------------------------------------------------------------   
         CREATE TABLE minions (
-            id INT PRIMARY KEY AUTO_INCREMENT,
-            name VARCHAR(50),
-            age INT
+                id INT PRIMARY KEY AUTO_INCREMENT,
+                name VARCHAR(50),
+                age INT
         );
 
         CREATE TABLE towns (
-            town_id INT PRIMARY KEY AUTO_INCREMENT,
-            name VARCHAR(50)
-        );
+                town_id INT PRIMARY KEY AUTO_INCREMENT,
+                name VARCHAR(50)
+	);
 
         ALTER TABLE minions
         ADD COLUMN town_id INT,
@@ -21,16 +22,16 @@
         DROP TABLE IF EXISTS towns;
 
         CREATE TABLE towns (
-            id INT PRIMARY KEY AUTO_INCREMENT, 
-            name VARCHAR(50) NOT NULL
+                id INT PRIMARY KEY AUTO_INCREMENT, 
+                name VARCHAR(50) NOT NULL
         );
 
         CREATE TABLE minions (
-            id INT PRIMARY KEY AUTO_INCREMENT, 
-            name VARCHAR(50) NOT NULL, 
-            age INT, 
-            town_id INT,
-            CONSTRAINT fk_town FOREIGN KEY (town_id) REFERENCES towns(id)
+                id INT PRIMARY KEY AUTO_INCREMENT, 
+                name VARCHAR(50) NOT NULL, 
+                age INT, 
+                town_id INT,
+                CONSTRAINT fk_town FOREIGN KEY (town_id) REFERENCES towns(id)
         );
 
         INSERT INTO towns (name) VALUES 
@@ -48,6 +49,15 @@
         DROP TABLE IF EXISTS minions;
 
         DROP TABLE IF EXISTS towns;
-
-        DROP SCHEMA IF EXISTS Minions;
--------------------------------------------------------------------------------------------   
+-- 6. -------------------------------------------------------------------------------------
+        CREATE TABLE people (
+                id INT PRIMARY KEY AUTO_INCREMENT UNIQUE NOT NULL,
+                name VARCHAR(200) NOT NULL,
+                picture BLOB NULL,
+		height DECIMAL(4, 2) NULL,
+		weight DECIMAL(4, 2) NULL,
+		gender CHAR(1) NOT NULL,
+                birthdate DATE NOT NULL,
+                biography TEXT NULL
+        );
+-------------------------------------------------------------------------------------------
