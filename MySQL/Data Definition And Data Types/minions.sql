@@ -57,7 +57,7 @@
 		height DECIMAL(4, 2) NULL,
 		weight DECIMAL(4, 2) NULL,
 		gender CHAR(1) NOT NULL,
-                birthdate DATE NOT NULL,
-                biography TEXT NULL
+		birthdate DATE NOT NULL,
+		biography TEXT NULL
         );
 -------------------------------------------------------------------------------------------
