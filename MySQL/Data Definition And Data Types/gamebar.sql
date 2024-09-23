@@ -81,3 +81,7 @@ INSERT INTO employees (first_name, last_name) VALUES
 
 ALTER TABLE employees
 ADD COLUMN middle_name VARCHAR(50);
+
+ALTER TABLE products
+ADD CONSTRAINT fk_category
+FOREIGN KEY (category_id) REFERENCES categories(id);
