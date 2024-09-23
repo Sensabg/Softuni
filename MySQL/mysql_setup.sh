@@ -67,20 +67,20 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 # Safe mode - this runs MySQL in the background and allows you to log in without a password.
 mysqld_safe --skip-grant-tables &
 
-#Check if it runs.
+# Check if it runs.
 ps aux | grep mysqld_safe
 
 # Login to MySQL.
 mysql -u root
 
-# Reset the Password.
+# Reset Password.
 FLUSH PRIVILEGES;
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'new_password';
 
-# Create User
+# Create User.
 CREATE USER 'yourUsername'@'localhost' IDENTIFIED BY 'your_password';
 
-# Give the appropriate privileges:
+# Give the appropriate privileges.
 GRANT ALL PRIVILEGES ON *.* TO 'yourUsername'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;                                                       
 
