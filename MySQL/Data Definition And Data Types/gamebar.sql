@@ -24,7 +24,7 @@ SELECT * FROM gamebar.employees;
 INSERT INTO employees (first_name, last_name) VALUES 
     ('Petrohan', 'Troharev'), 
     ('Palamud', 'Karakudov'), 
-    ('Salzan', 'Naplakan')
+    ('Salzan', 'Naplakanov')
 
 SELECT * FROM gamebar.employees;
 
