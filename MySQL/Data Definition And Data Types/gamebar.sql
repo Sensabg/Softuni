@@ -79,7 +79,5 @@ INSERT INTO employees (first_name, last_name) VALUES
     ('Ivan', 'Pleshkov'),
     ('Grogonil', 'Karakalkanov');
 
-SELECT * FROM gamebar.employees;
-
 ALTER TABLE employees
 ADD COLUMN middle_name VARCHAR(50);
