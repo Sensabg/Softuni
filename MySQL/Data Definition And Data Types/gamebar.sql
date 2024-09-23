@@ -100,3 +100,13 @@ MODIFY first_name VARCHAR(100),
 MODIFY last_name VARCHAR(100),
 
 DESCRIBE employees;
+
+SELECT * FROM gamebar.employees;
+
+ALTER TABLE employees
+DROP COLUMN middle_name
+
+SELECT * FROM gamebar.employees;
+
+ALTER TABLE employees
+ADD COLUMN middle_name VARCHAR(100);
