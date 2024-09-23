@@ -1,45 +1,53 @@
-CREATE SCHEMA Minions;
+1. =--------------------------------------------------------------------------------------=     
+        CREATE SCHEMA Minions;
+2. =--------------------------------------------------------------------------------------=    
+        CREATE TABLE minions (
+            id INT PRIMARY KEY AUTO_INCREMENT,
+            name VARCHAR(50),
+            age INT
+        );
 
-CREATE TABLE minions (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50),
-    age INT
-);
+        CREATE TABLE towns (
+            town_id INT PRIMARY KEY AUTO_INCREMENT,
+            name VARCHAR(50)
+        );
 
-CREATE TABLE towns (
-    town_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50)
-);
+        ALTER TABLE minions
+        ADD COLUMN town_id INT,
+        ADD CONSTRAINT fk_town
+        FOREIGN KEY (town_id) REFERENCES towns(id);
+3. =--------------------------------------------------------------------------------------=      
+        DROP TABLE IF EXISTS minions;
+        DROP TABLE IF EXISTS towns;
 
-ALTER TABLE minions
-ADD COLUMN town_id INT,
-ADD CONSTRAINT fk_town
-FOREIGN KEY (town_id) REFERENCES towns(id);
+        CREATE TABLE towns (
+            id INT PRIMARY KEY AUTO_INCREMENT, 
+            name VARCHAR(50) NOT NULL
+        );
 
-DROP TABLE IF EXISTS minions;
-DROP TABLE IF EXISTS towns;
+        CREATE TABLE minions (
+            id INT PRIMARY KEY AUTO_INCREMENT, 
+            name VARCHAR(50) NOT NULL, 
+            age INT, 
+            town_id INT,
+            CONSTRAINT fk_town FOREIGN KEY (town_id) REFERENCES towns(id)
+        );
 
-CREATE TABLE towns (
-    id INT PRIMARY KEY AUTO_INCREMENT, 
-    name VARCHAR(50) NOT NULL
-);
+        INSERT INTO towns (name) VALUES 
+            ('Sofia'), 
+            ('Plovdiv'), 
+            ('Varna');
 
-CREATE TABLE minions (
-    id INT PRIMARY KEY AUTO_INCREMENT, 
-    name VARCHAR(50) NOT NULL, 
-    age INT, 
-    town_id INT,
-    CONSTRAINT fk_town FOREIGN KEY (town_id) REFERENCES towns(id)
-);
+        INSERT INTO minions (name, age, town_id) VALUES 
+            ('Kevin', 22, 1), 
+            ('Bob', 15, 3), 
+            ('Steward', NULL, 2);
+4. =--------------------------------------------------------------------------------------=         
+        TRUNCATE TABLE minions;
+5. =--------------------------------------------------------------------------------------=      
+        DROP TABLE IF EXISTS minions;
 
-INSERT INTO towns (name) VALUES 
-    ('Sofia'), 
-    ('Plovdiv'), 
-    ('Varna');
+        DROP TABLE IF EXISTS towns;
 
-INSERT INTO minions (name, age, town_id) VALUES 
-    ('Kevin', 22, 1), 
-    ('Bob', 15, 3), 
-    ('Steward', NULL, 2);
-
-TRUNCATE TABLE minions;
+        DROP SCHEMA IF EXISTS Minions;
+6. =--------------------------------------------------------------------------------------=   
