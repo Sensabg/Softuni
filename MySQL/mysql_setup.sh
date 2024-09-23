@@ -21,7 +21,7 @@ nano ~/.zshrc
 export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
   
 =--------------------------------------------------------------------------------------=| 
-              In this way, we can work with the server FROM ANYWHERE
+              In this way, we can work with the server from any directory
 =--------------------------------------------------------------------------------------=| 
 
 # start/stop/restart.                                                                  
@@ -37,7 +37,7 @@ mysql.server status
 ps aux | grep mysqld     
 
 =--------------------------------------------------------------------------------------=|                                                                                          #/     
-                              Instead of
+              Instead of specifying explicitly the directory path per demand
 =--------------------------------------------------------------------------------------=|  
                                                                                    
 # start/stop/restart.                                                                    
