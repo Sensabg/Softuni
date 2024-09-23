@@ -1,3 +1,5 @@
+CREATE DATABASE gamebar;
+
 USE gamebar;
 
 CREATE TABLE products (
