@@ -18,3 +18,17 @@ CREATE TABLE employees (
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL
 );
+
+SELECT * FROM gamebar.employees;
+
+INSERT INTO employees (first_name, last_name) VALUES 
+    ('Petrohan', 'Troharev'), 
+    ('Palamud', 'Karakudov'), 
+    ('Salzan', 'Naplakan')
+
+SELECT * FROM gamebar.employees;
+
+INSERT INTO employees (first_name, last_name) VALUES
+('Gosho', 'Muhamedov'),
+('Ivan', 'Pleshkov'),
+('Grogonil', 'Karakalkanov');
