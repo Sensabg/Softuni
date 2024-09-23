@@ -29,6 +29,8 @@ INSERT INTO employees (first_name, last_name) VALUES
 SELECT * FROM gamebar.employees;
 
 INSERT INTO employees (first_name, last_name) VALUES
-('Gosho', 'Muhamedov'),
-('Ivan', 'Pleshkov'),
-('Grogonil', 'Karakalkanov');
+    ('Gosho', 'Muhamedov'),
+    ('Ivan', 'Pleshkov'),
+    ('Grogonil', 'Karakalkanov');
+
+
