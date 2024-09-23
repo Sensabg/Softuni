@@ -20,9 +20,9 @@ nano ~/.zshrc
 # Add the following:
 export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
   
-=--------------------------------------------------------------------------------------#| 
+=--------------------------------------------------------------------------------------=| 
               In this way, we can work with the server FROM ANYWHERE
-=--------------------------------------------------------------------------------------#| 
+=--------------------------------------------------------------------------------------=| 
 
 # start/stop/restart.                                                                  
 mysql.server start                                                                        
@@ -36,9 +36,9 @@ mysql -u "yourUsername" -p
 mysql.server status                                                                       
 ps aux | grep mysqld     
 
-=--------------------------------------------------------------------------------------#|                                                                                          #/     
+=--------------------------------------------------------------------------------------=|                                                                                          #/     
                               Instead of
-=--------------------------------------------------------------------------------------#|  
+=--------------------------------------------------------------------------------------=|  
                                                                                    
 # start/stop/restart.                                                                    
 /opt/homebrew/opt/mysql@8.0/bin/mysql.server start                                       
@@ -51,7 +51,7 @@ ps aux | grep mysqld
 # Check status.                                                                          
 /opt/homebrew/opt/mysql@8.0/bin/mysql.server status  
                                                                                                                          
-=--------------------------------------------------------------------------------------#| 
+=--------------------------------------------------------------------------------------=| 
 
 # Reload:
 source ~/.zshrc
@@ -162,7 +162,7 @@ SELECT User, Host FROM mysql.user;
                                                                  
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-# Remove the hardcoded MacOS dark theme and adjust the default Workbench colors we see on Windows-based machines
+# Remove the hardcoded MacOS dark theme and adjust the default Workbench colors we see on Windows-based machines.
 defaults write com.oracle.workbench.MySQLWorkbench NSRequiresAquaSystemAppearance -bool yes
 
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
