@@ -21,13 +21,9 @@ public class newnew {
             input = scanner.nextLine();
         }
 
-        for (Map.Entry<String, Integer> entry : productsQuantity.entrySet()) {
-
-            String productName = entry.getKey();
-            int productQuantity = entry.getValue();
+        productsQuantity.forEach((productName, productQuantity) -> {
             double productPrice = productsPrice.get(productName);
-
             System.out.printf("%s -> %.2f\n", productName, productQuantity * productPrice);
-        }
+        });
     }
 }
