@@ -15,8 +15,7 @@ public class slavun {
 
                 teams.putIfAbsent(teamName, new ArrayList<>());
 
-                boolean playerExists = teams.values().stream()
-                        .anyMatch(team -> team.contains(playerName));
+                boolean playerExists = teams.values().stream().anyMatch(team -> team.contains(playerName));
 
                 if (!playerExists) {
                     teams.get(teamName).add(playerName);
@@ -35,7 +34,6 @@ public class slavun {
             }
         }
 
-
         for (Map.Entry<String, List<String>> entry : teams.entrySet()) {
             String teamName = entry.getKey();
             List<String> players = entry.getValue();
@@ -49,3 +47,12 @@ public class slavun {
         }
     }
 }
+
+//        teams.entrySet().stream()
+//                .filter(entry -> !entry.getValue().isEmpty())
+//                .forEach(entry -> {
+//                    String teamName = entry.getKey();
+//                    List<String> players = entry.getValue();
+//                    System.out.printf("Side: %s, Members: %d\n", teamName, players.size());
+//                    players.forEach(player -> System.out.println("! " + player));
+//                });
