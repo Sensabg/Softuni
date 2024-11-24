@@ -21,6 +21,7 @@ import java.util.Optional;
 
 import static softuni.exam.models.Constants.*;
 
+
 @Service
 public class DeviceServiceImpl implements DeviceService {
 
@@ -59,9 +60,9 @@ public class DeviceServiceImpl implements DeviceService {
         xmlParser.fromFile(DEVICE_FILE_PATH, DeviceSeedRootDTO.class)
                 .getSeedDTOList()
                 .stream()
-                .filter(deviceSeedDto -> isValidDevice(deviceSeedDto, result)) 
-                .map(this::mapToDevice) 
-                .forEach(deviceRepository::save); 
+                .filter(deviceSeedDto -> isValidDevice(deviceSeedDto, result))
+                .map(this::mapToDevice)
+                .forEach(deviceRepository::save);
 
         return result.toString();
     }

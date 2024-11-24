@@ -70,18 +70,21 @@ public class SaleServiceImpl implements SaleService {
 
 
         String message = validSalesDTOS.isEmpty()
-                ? "Invalid sale"
+                ? String.format(INVALID_FORMAT, SALE)
                 : validSalesDTOS.stream()
-                .map(saleSeedDTO -> String.format(SUCCESSFUL_SALE_IMPORT, SALE, saleSeedDTO.getNumber()))
+                .map(saleSeedDTO -> String.format(SUCCESSFUL_SALE_IMPORT,
+                        SALE, saleSeedDTO.getNumber()))
                 .collect(Collectors.joining(System.lineSeparator()));
 
         validSalesDTOS.stream()
-                .map(this::mapSaleFromDTO)          
-                .map(this::associateSellerToSale)     
-                .map(this::saveSeller)                 
+                .map(this::mapSaleFromDTO)
+                .map(this::associateSellerToSale)
+                .map(this::saveSeller)
                 .forEach(saleRepository::save);
 
-        return "";
+        sb.append(message);
+
+        return sb.toString().trim();
     }
 
     private Sale mapSaleFromDTO(SaleSeedDTO saleSeedDTO) {
@@ -107,6 +110,7 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public void addAndSaveAddedDevice(Sale sale, Device device) {
+
         sale.getDevices().add(device);
         saleRepository.save(sale);
     }

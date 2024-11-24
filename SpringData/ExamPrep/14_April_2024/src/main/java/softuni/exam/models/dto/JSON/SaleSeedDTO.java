@@ -22,7 +22,7 @@ public class SaleSeedDTO implements Serializable {
     private String number;
 
     @Expose
-    private LocalDateTime saleDate;
+    private String saleDate;
 
     @Expose
     private Long seller;

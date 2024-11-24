@@ -1,11 +1,9 @@
 package softuni.exam.models;
 
-import java.net.URI;
-
 public class Constants {
     public static final String DEVICE_FILE_PATH = "src/main/resources/files/xml/devices.xml"; ;
     public static final String SALE_FILE_PATH = "src/main/resources/files/json/sales.json";
-    private static final String SELLER_FILE_PATH = "src/main/resources/files/json/sellers.json";
+    public static final String SELLER_FILE_PATH = "src/main/resources/files/json/sellers.json";
 
     public static final String DEVICE = "device";
     public static final String SALE = "sale";
@@ -16,7 +14,4 @@ public class Constants {
     public static final String SUCCESSFUL_SELLER_IMPORT = "Successfully imported %s %s %s";
 
     public static final String INVALID_FORMAT = "Invalid %s";
-
-
-
 }

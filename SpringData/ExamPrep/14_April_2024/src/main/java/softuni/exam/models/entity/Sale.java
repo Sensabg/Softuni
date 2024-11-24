@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -21,7 +21,7 @@ public class Sale extends BaseEntity {
     private String number;
 
     @Column(name = "sale_date", nullable = false)
-    private LocalDate saleDate;
+    private LocalDateTime saleDate;
 
     @ManyToOne
     @JoinColumn(name = "seller_id", referencedColumnName = "id")
