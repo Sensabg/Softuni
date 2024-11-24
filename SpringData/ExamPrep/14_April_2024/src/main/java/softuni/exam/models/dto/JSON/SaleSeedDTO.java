@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Setter
 public class SaleSeedDTO implements Serializable {
 
-    @Getter
     @Expose
     private boolean discounted;
 
@@ -26,5 +25,4 @@ public class SaleSeedDTO implements Serializable {
 
     @Expose
     private Long seller;
-
 }
