@@ -13,8 +13,4 @@ public interface SaleService {
     String readSalesFileContent() throws IOException;
 
     String importSales() throws IOException;
-
-    Sale findSaleById(Long saleId);
-
-    void addAndSaveAddedDevice(Sale sale, Device device);
 }

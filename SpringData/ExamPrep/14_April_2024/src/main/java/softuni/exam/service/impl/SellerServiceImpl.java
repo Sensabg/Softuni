@@ -3,7 +3,7 @@ package softuni.exam.service.impl;
 import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import softuni.exam.models.dto.JSON.SaleSeedDTO;
+
 import softuni.exam.models.dto.JSON.SellerSeedDTO;
 import softuni.exam.models.entity.Seller;
 import softuni.exam.repository.SellerRepository;
@@ -50,34 +50,41 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public String importSellers() throws IOException {
-        StringBuilder sb = new StringBuilder();
+//        List<SellerSeedDTO> sellerSeedDTOs = Arrays.asList(
+//                gson.fromJson(readSellersFromFile(), SellerSeedDTO[].class));
 
-        List<SellerSeedDTO> validSellersDTOS =
-                Arrays.stream(gson.fromJson(readSellersFromFile(), SellerSeedDTO[].class))
-                        .filter(this.validationUtil::isValid)
-                        .filter(sellerSeedDTO -> this.sellerRepository
-                                .findByLastName(sellerSeedDTO.getLastName())
-                                .isEmpty()).collect(Collectors.toList());
 
-        String message = validSellersDTOS.isEmpty()
-                ? String.format(INVALID_FORMAT, SELLER)
-                : validSellersDTOS.stream()
-                .map(SellerSeedDTO -> String.format(SUCCESSFUL_SELLER_IMPORT,
-                        SELLER, SellerSeedDTO.getFirstName(), SellerSeedDTO.getLastName()))
+        String fileContent = readSellersFromFile();
+        System.out.println(fileContent);  // Check file content
+        List<SellerSeedDTO> sellerSeedDTOs = Arrays.asList(gson.fromJson(fileContent, SellerSeedDTO[].class));
+
+        return sellerSeedDTOs.stream()
+                .map(this::processSeller)
                 .collect(Collectors.joining(System.lineSeparator()));
-
-        validSellersDTOS.stream()
-                .map(this::mapSellerFromDTO)
-                .forEach(this.sellerRepository::save);
-
-        sb.append(message);
-
-        return sb.toString().trim();
     }
 
     private Seller mapSellerFromDTO(SellerSeedDTO sellerSeedDTO) {
         return this.modelMapper.map(sellerSeedDTO, Seller.class);
     }
+
+    private String processSeller(SellerSeedDTO sellerSeedDTO) {
+        Seller seller = modelMapper.map(sellerSeedDTO, Seller.class);
+
+        String message = !isValidSeller(sellerSeedDTO)
+                ? String.format(INVALID_FORMAT, SELLER)
+                : String.format(SUCCESSFUL_SELLER_IMPORT, SELLER,
+                seller.getFirstName(), seller.getLastName());
+
+        seller = mapSellerFromDTO(sellerSeedDTO);
+        this.sellerRepository.saveAndFlush(seller);
+        return message;
+    }
+
+    private boolean isValidSeller(SellerSeedDTO sellerSeedDTO) {
+        return validationUtil.isValid(sellerSeedDTO) &&
+                sellerRepository.findByLastName(sellerSeedDTO.getLastName()).isEmpty();
+    }
+
 
     @Override
     public Seller findSellerById(Long sellerId) {

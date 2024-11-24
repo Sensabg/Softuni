@@ -15,7 +15,6 @@ public class XmlParserImpl implements XmlParser {
     public <T> T fromFile(String filePath, Class<T> tClass) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(tClass);
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        T object = (T) unmarshaller.unmarshal(new File(filePath));
-        return object;
+        return (T) unmarshaller.unmarshal(new File(filePath));
     }
 }

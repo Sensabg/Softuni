@@ -3,47 +3,38 @@ package softuni.exam.service.impl;
 import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import softuni.exam.models.dto.JSON.SaleSeedDTO;
-import softuni.exam.models.entity.Device;
+;
+import softuni.exam.models.dto.JSON.SaleSeedDto;
 import softuni.exam.models.entity.Sale;
-import softuni.exam.models.dto.JSON.SaleSeedDTO.*;
 import softuni.exam.models.entity.Seller;
-import softuni.exam.repository.DeviceRepository;
 import softuni.exam.repository.SaleRepository;
+import softuni.exam.repository.SellerRepository;
 import softuni.exam.service.SaleService;
-import softuni.exam.service.SellerService;
 import softuni.exam.util.ValidationUtil;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static softuni.exam.models.Constants.*;
 
 @Service
 public class SaleServiceImpl implements SaleService {
 
-    private final ModelMapper modelMapper;
+    private final SaleRepository saleRepository;
+    private final SellerRepository sellerRepository;
     private final Gson gson;
+    private final ModelMapper modelMapper;
     private final ValidationUtil validationUtil;
-    private SaleRepository saleRepository;
-    private DeviceRepository deviceRepository;
-    private SellerService sellerService;
 
-    public SaleServiceImpl(ModelMapper modelMapper, Gson gson,
-                           ValidationUtil validationUtil, SaleRepository saleRepository,
-                           DeviceRepository deviceRepository, SellerService sellerService) {
-
-        this.modelMapper = modelMapper;
-        this.gson = gson;
-        this.validationUtil = validationUtil;
+    public SaleServiceImpl(SaleRepository saleRepository, SellerRepository sellerRepository, Gson gson, ModelMapper modelMapper, ValidationUtil validationUtil) {
         this.saleRepository = saleRepository;
-        this.deviceRepository = deviceRepository;
-        this.sellerService = sellerService;
+        this.sellerRepository = sellerRepository;
+        this.gson = gson;
+        this.modelMapper = modelMapper;
+        this.validationUtil = validationUtil;
     }
 
     @Override
@@ -58,60 +49,36 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public String importSales() throws IOException {
+        StringBuilder stringBuilder = new StringBuilder();
 
-        StringBuilder sb = new StringBuilder();
+        SaleSeedDto[] saleSeedDtos = this.gson.fromJson(readSalesFileContent(), SaleSeedDto[].class);
 
-        final List<SaleSeedDTO> validSalesDTOS =
-                Arrays.stream(gson.fromJson(readSalesFileContent(), SaleSeedDTO[].class))
-                        .filter(this.validationUtil::isValid)
-                        .filter(saleSeedDto -> this.saleRepository
-                                .findSaleByNumber(saleSeedDto.getNumber())
-                                .isEmpty()).collect(Collectors.toList());
+        Stream.of(saleSeedDtos)
+                .map(this::processSaleDto)
+                .forEach(resultMessage -> stringBuilder.append(resultMessage).append(System.lineSeparator()));
 
-
-        String message = validSalesDTOS.isEmpty()
-                ? String.format(INVALID_FORMAT, SALE)
-                : validSalesDTOS.stream()
-                .map(saleSeedDTO -> String.format(SUCCESSFUL_SALE_IMPORT,
-                        SALE, saleSeedDTO.getNumber()))
-                .collect(Collectors.joining(System.lineSeparator()));
-
-        validSalesDTOS.stream()
-                .map(this::mapSaleFromDTO)
-                .map(this::associateSellerToSale)
-                .map(this::saveSeller)
-                .forEach(saleRepository::save);
-
-        sb.append(message);
-
-        return sb.toString().trim();
+        return stringBuilder.toString().trim();
     }
 
-    private Sale mapSaleFromDTO(SaleSeedDTO saleSeedDTO) {
-        return modelMapper.map(saleSeedDTO, Sale.class);
+    private String processSaleDto(SaleSeedDto saleSeedDto) {
+        return Optional.of(saleSeedDto)
+                .filter(this::isValid)
+                .map(this::saveSale)
+                .orElse("Invalid sale");
     }
 
-    private Sale associateSellerToSale(Sale sale) {
-        Seller seller = sellerService.findSellerById(sale.getSeller().getId());
-        seller.getSales().add(sale);
-        sale.setSeller(seller);
-        return sale;
+    private boolean isValid(SaleSeedDto saleSeedDto) {
+        return ! this.validationUtil.isValid(saleSeedDto) ||
+                this.saleRepository.findByNumber(saleSeedDto.getNumber()).isPresent();
     }
 
-    private Sale saveSeller(Sale sale) {
-        sellerService.saveAddedSaleToSeller(sale.getSeller());
-        return sale;
-    }
+    private String saveSale(SaleSeedDto saleSeedDto) {
+        Sale sale = this.modelMapper.map(saleSeedDto, Sale.class);
+        Optional<Seller> sellerOptional = this.sellerRepository.findById(saleSeedDto.getSeller());
+        sellerOptional.ifPresent(sale::setSeller);
 
-    @Override
-    public Sale findSaleById(Long saleId) {
-        return saleRepository.findById(saleId).orElse(null);
-    }
+        this.saleRepository.saveAndFlush(sale);
 
-    @Override
-    public void addAndSaveAddedDevice(Sale sale, Device device) {
-
-        sale.getDevices().add(device);
-        saleRepository.save(sale);
+        return String.format(SUCCESSFUL_SALE_IMPORT,SALE, sale.getNumber());
     }
 }
