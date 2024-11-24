@@ -76,9 +76,9 @@ public class SaleServiceImpl implements SaleService {
                 .collect(Collectors.joining(System.lineSeparator()));
 
         validSalesDTOS.stream()
-                .map(this::mapSaleFromDTO)             // Step 1: Map DTO to Sale
-                .map(this::associateSellerToSale)      // Step 2: Find seller and associate with sale
-                .map(this::saveSeller)                 // Step 3: Save seller with the added sale
+                .map(this::mapSaleFromDTO)          
+                .map(this::associateSellerToSale)     
+                .map(this::saveSeller)                 
                 .forEach(saleRepository::save);
 
         return "";
@@ -107,7 +107,6 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public void addAndSaveAddedDevice(Sale sale, Device device) {
-
         sale.getDevices().add(device);
         saleRepository.save(sale);
     }
