@@ -21,18 +21,13 @@ import java.util.Optional;
 
 import static softuni.exam.models.Constants.*;
 
-
 @Service
 public class DeviceServiceImpl implements DeviceService {
 
     private final DeviceRepository deviceRepository;
-    //mapper
     private final ModelMapper modelMapper;
-    //parser
     private final XmlParser xmlParser;
-    //validation
     private final ValidationUtil validationUtil;
-
     private final SaleService saleService;
 
     public DeviceServiceImpl(DeviceRepository deviceRepository,
@@ -64,13 +59,12 @@ public class DeviceServiceImpl implements DeviceService {
         xmlParser.fromFile(DEVICE_FILE_PATH, DeviceSeedRootDTO.class)
                 .getSeedDTOList()
                 .stream()
-                .filter(deviceSeedDto -> isValidDevice(deviceSeedDto, result)) // Filter valid devices
-                .map(this::mapToDevice) // Map DTO to Entity
-                .forEach(deviceRepository::save); // Save valid devices to repository
+                .filter(deviceSeedDto -> isValidDevice(deviceSeedDto, result)) 
+                .map(this::mapToDevice) 
+                .forEach(deviceRepository::save); 
 
         return result.toString();
     }
-
 
     private boolean isValidDevice(DeviceSeedDTO deviceSeedDto, StringBuilder result) {
         boolean isValid = validationUtil.isValid(deviceSeedDto);
