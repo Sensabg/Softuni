@@ -96,8 +96,8 @@ public class DeviceServiceImpl implements DeviceService {
         String message = isValid ?
                 String.format(SUCCESSFUL_DEVICE_IMPORT, DEVICE,
                         deviceSeedDto.getDeviceType(),
-                        deviceSeedDto.getBrand()) :
-                String.format(INVALID_FORMAT, DEVICE);
+                        deviceSeedDto.getBrand()) 
+                : String.format(INVALID_FORMAT, DEVICE);
 
         result.append(message).append(System.lineSeparator());
     }
