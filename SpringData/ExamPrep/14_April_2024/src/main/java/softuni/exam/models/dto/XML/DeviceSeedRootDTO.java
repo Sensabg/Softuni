@@ -7,6 +7,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.List;
 
+
+@Getter
+@Setter
 @XmlRootElement(name = "devices")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DeviceSeedRootDTO implements Serializable {
