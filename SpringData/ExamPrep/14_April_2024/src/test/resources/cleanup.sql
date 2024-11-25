@@ -1,3 +1,0 @@
-TRUNCATE TABLE devices;
-TRUNCATE TABLE sales;
-TRUNCATE TABLE sellers;
