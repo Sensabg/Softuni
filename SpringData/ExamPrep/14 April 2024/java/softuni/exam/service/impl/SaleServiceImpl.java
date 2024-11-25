@@ -42,14 +42,14 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public String readSalesFileContent() throws IOException {
+    public String readSales() throws IOException {
         return new String(Files.readAllBytes(Path.of(SALE_FILE_PATH)));
     }
 
     @Override
     public String importSales() throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
-        SaleSeedDto[] saleSeedDtos = gson.fromJson(readSalesFileContent(), SaleSeedDto[].class);
+        SaleSeedDto[] saleSeedDtos = gson.fromJson(readSales(), SaleSeedDto[].class);
         Arrays.stream(saleSeedDtos)
                 .map(this::processSaleDto)
                 .forEach(result -> stringBuilder.append(result).append(System.lineSeparator()));
