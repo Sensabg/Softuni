@@ -49,8 +49,7 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public String importSellers() throws IOException {
         List<SellerSeedDTO> sellerSeedDTOs = gson.fromJson(readSellers(),
-                new TypeToken<List<SellerSeedDTO>>() {
-                }.getType());
+                new TypeToken<List<SellerSeedDTO>>() {}.getType());
 
         return sellerSeedDTOs.stream()
                 .map(this::processSeller)
