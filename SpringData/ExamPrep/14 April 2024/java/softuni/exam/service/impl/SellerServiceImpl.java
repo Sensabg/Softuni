@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import softuni.exam.models.dto.JSON.SaleSeedDto;
 import softuni.exam.models.dto.JSON.SellerSeedDTO;
 import softuni.exam.models.entity.Seller;
 import softuni.exam.repository.SellerRepository;
@@ -13,6 +14,7 @@ import softuni.exam.util.ValidationUtil;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -48,10 +50,12 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public String importSellers() throws IOException {
-        List<SellerSeedDTO> sellerSeedDTOs = gson.fromJson(readSellers(),
-                new TypeToken<List<SellerSeedDTO>>() {}.getType());
+//        List<SellerSeedDTO> sellerSeedDTOs = gson.fromJson(readSellers(),
+//                new TypeToken<List<SellerSeedDTO>>() {}.getType());
 
-        return sellerSeedDTOs.stream()
+        SellerSeedDTO[] sellerSeedDTOs = gson.fromJson(readSellers(), SellerSeedDTO[].class);
+
+        return Arrays.stream(sellerSeedDTOs)
                 .map(this::processSeller)
                 .collect(Collectors.joining(System.lineSeparator()));
     }

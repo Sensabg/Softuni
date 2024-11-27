@@ -21,6 +21,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static softuni.exam.models.Constants.*;
+import static softuni.exam.models.entity.DeviceType.*;
 
 @Service
 public class DeviceServiceImpl implements DeviceService {
@@ -105,16 +106,16 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public String exportDevices() {
         return deviceRepository
-                .findAllSmartPhonesCheaperThan1000AndStorageMoreThan128()
+                .findAllSmartPhonesCheaperThanXAndStorageMoreThanY(SMART_PHONE, 1000,  120)
                 .stream().map(this::formatDevice)
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
     private String formatDevice(Device device) {
         return String.format("Device brand: %s\n" +
-                        "*Model: %s\n" +
-                        "**Storage: %d\n" +
-                        "***Price: %.2f",
+                        "   *Model: %s\n" +
+                        "   **Storage: %d\n" +
+                        "   ***Price: %.2f",
                 device.getBrand(), device.getModel(),
                 device.getStorage(), device.getPrice());
     }

@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import softuni.exam.models.dto.JSON.SaleSeedDto;
+import softuni.exam.models.dto.JSON.SellerSeedDTO;
 import softuni.exam.models.entity.Sale;
+import softuni.exam.models.entity.Seller;
 import softuni.exam.repository.SaleRepository;
 import softuni.exam.repository.SellerRepository;
 import softuni.exam.service.SaleService;
@@ -14,6 +16,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static softuni.exam.models.Constants.*;
 
@@ -48,27 +52,25 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public String importSales() throws IOException {
-        StringBuilder stringBuilder = new StringBuilder();
         SaleSeedDto[] saleSeedDtos = gson.fromJson(readSales(), SaleSeedDto[].class);
-        Arrays.stream(saleSeedDtos)
+        return  Arrays.stream(saleSeedDtos)
                 .map(this::processSaleDto)
-                .forEach(result -> stringBuilder.append(result).append(System.lineSeparator()));
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
 
-        return stringBuilder.toString().trim();
+    private Sale mapSaleFromDTO(SaleSeedDto saleSeedDto) {
+        return modelMapper.map(saleSeedDto, Sale.class);
     }
 
     private String processSaleDto(SaleSeedDto saleSeedDto) {
-        return isValid(saleSeedDto) ? saveSale(saleSeedDto) : String.format(INVALID_FORMAT, SALE);
+      return Optional.of(saleSeedDto)
+                .filter(this::isValid)
+                .map(dto -> this.saleRepository.saveAndFlush(mapSaleFromDTO(dto)))
+                .map(sale -> String.format(SUCCESSFUL_SALE_IMPORT, SALE, sale.getNumber()))
+                .orElse(String.format(INVALID_FORMAT, SALE));
     }
 
     private boolean isValid(SaleSeedDto saleSeedDto) {
         return validationUtil.isValid(saleSeedDto) && saleRepository.findByNumber(saleSeedDto.getNumber()).isEmpty();
-    }
-
-    private String saveSale(SaleSeedDto saleSeedDto) {
-        Sale sale = modelMapper.map(saleSeedDto, Sale.class);
-        sellerRepository.findById(saleSeedDto.getSeller()).ifPresent(sale::setSeller);
-        saleRepository.saveAndFlush(sale);
-        return String.format(SUCCESSFUL_SALE_IMPORT, SALE, sale.getNumber());
     }
 }

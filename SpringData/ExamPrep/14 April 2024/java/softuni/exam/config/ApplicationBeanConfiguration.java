@@ -27,7 +27,6 @@ public class ApplicationBeanConfiguration {
     @Bean
     public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
-
         modelMapper.addConverter(new Converter<String, LocalDateTime>() {
             @Override
             public LocalDateTime convert(MappingContext<String, LocalDateTime> mappingContext) {
@@ -45,7 +44,6 @@ public class ApplicationBeanConfiguration {
                 return parse;
             }
         });
-
         return new ModelMapper();
     }
 }
