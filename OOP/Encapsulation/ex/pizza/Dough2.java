@@ -27,9 +27,9 @@ public class Dough {
     }
 
     private static boolean isValid(String bakingTechnique) {
-        return !(!bakingTechnique.equals("Crispy")
-                && !bakingTechnique.equals("Chewy")
-                && !bakingTechnique.equals("Homemade"));
+        return bakingTechnique.equals("Crispy")
+                && bakingTechnique.equals("Chewy")
+                && bakingTechnique.equals("Homemade");
     }
 
     private void setWeight(double weight) {
