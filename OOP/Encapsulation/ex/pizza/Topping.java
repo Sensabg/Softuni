@@ -19,8 +19,8 @@ public class Topping {
     }
 
     private static boolean isValid(String toppingType) {
-        return !(!toppingType.equals("Meat") && !toppingType.equals("Veggies")
-                && !toppingType.equals("Cheese") && !toppingType.equals("Sauce"));
+        return toppingType.equals("Meat") && toppingType.equals("Veggies")
+                && toppingType.equals("Cheese") && toppingType.equals("Sauce"));
     }
 
     private void setWeight(double weight) {
