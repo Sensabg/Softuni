@@ -1,0 +1,15 @@
+-- Practice:
+-- https://www.sql-practice.com/
+
+--=--= table_fields =--=--
+      patient_id INT
+      first_name TEXT
+      last_name TEXT
+      gender CHAR(1)
+      birth_date DATE
+      city TEXT
+      primary key icon province_id	CHAR(2)
+      allergies TEXT
+      height INT
+      weight INT
+--=--=t able_field s=--=--
